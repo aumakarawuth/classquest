@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P8 prep: k6 load test (30 VU) + staging password helper + คู่มือรัน; `public/_headers` (CSP ไม่มี inline script, security headers, cache) + ย้าย theme script เป็นไฟล์ + e2e ตรวจ CSP; docs/SECURITY_REVIEW.md; คู่มือครูและนักเรียนฉบับเต็ม; ขั้นตอน Cloudflare Pages และ pre-launch checklist
 - P3-03: RPC `my_learning_weeks` (สัปดาห์ที่มีการเรียนรู้จริง, streak ต่อเนื่องให้ขาดได้ 1 สัปดาห์, ไม่มีการหัก XP, 8 สัปดาห์ล่าสุด); การ์ด "สัปดาห์แห่งการเรียนรู้" ในหน้ารายวิชา; Skill Tree แบบลำดับชั้นจากสมรรถนะหลัก–ย่อยพร้อมสถานะ ในหน้าสมรรถนะของฉัน
 - P6-04: RPC `admin_quota` (ขนาด DB/Storage เทียบ Free Tier, จำนวนข้อมูล, ตารางใหญ่สุด, สำรองล่าสุด), `admin_export` (JSON ทุกตาราง, audit), `private.mark_backup`; หน้า ภาพรวมระบบ, โควตาบริการ, สำรองและส่งออก, ตั้งค่าระบบ (feature flags — ฟีเจอร์ที่ยังไม่พัฒนาเปิดไม่ได้, โดเมนอีเมล, XP บทเรียน); GitHub Actions `keepalive.yml` และ `backup.yml` (pg_dump + age, ข้ามเมื่อยังไม่ตั้ง secret)
 - P6-03: competition_evidence (13 หมวด, ครูผู้สอนเท่านั้น), surveys/survey_responses (Likert 5 ระดับ + ข้อความ, ไม่ระบุตัวตน = ครูเห็นเฉพาะผลรวม), RPC `submit_survey`, `survey_summary` (x̄, S.D., n, distribution), `competency_summary` (ไม่มีชื่อ); หน้าศูนย์หลักฐาน (หมวด, เพิ่ม/แก้/ลบ, ลิงก์ไปรายงานอัตโนมัติ, จัดการแบบประเมิน), รายงานพร้อมพิมพ์ (ก่อน–หลังเรียนแบบนิรนาม, สมรรถนะ, ความพึงพอใจ, หลักฐานทุกหมวด, CSV), หน้าตอบแบบประเมินของนักเรียน
