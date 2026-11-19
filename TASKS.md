@@ -30,11 +30,15 @@
 | P2-01 | Migration learning (units, lessons, resources, progress) — **done** | claude | default 18 units เมื่อสร้างวิชา |
 | P2-02 | Course management + clone + enrollment code — **done** | claude | clone ไม่คัดลอกข้อมูลนักเรียน; code หมดอายุใช้ไม่ได้ |
 | P2-03 | Course Builder + Lesson Editor (markdown + resources) — **done** | claude | เพิ่ม resource ครบ 11 ประเภท, preview ปลอดภัย (sanitize) |
-| P2-04 | Student Roadmap (QUEST stepper) + Lesson Viewer + unlock — **review (claude)** | claude | บทเรียนที่ยังล็อกแสดงเงื่อนไข |
-| P2-05 | Quest migration + `submit_quest` RPC + storage bucket | codex | ไฟล์ > 2MB/MIME อื่นถูกปฏิเสธ; เกิน resubmission ถูกปฏิเสธ |
+| P2-04 | Student Roadmap (QUEST stepper) + Lesson Viewer + unlock — **done** | claude | บทเรียนที่ยังล็อกแสดงเงื่อนไข |
+| P2-05 | Quest migration + `submit_quest` RPC + storage bucket — **review (claude)** | claude | ไฟล์ > 2MB/MIME อื่นถูกปฏิเสธ; เกิน resubmission ถูกปฏิเสธ |
 | P2-06 | Quest Board/Detail/Editor UI | claude | 6 ประเภทแสดงต่างกัน, empty/loading/error states |
 | P2-07 | `review_submission` RPC + Review UI + rubric | codex/claude | approve ซ้ำไม่ได้ XP ซ้ำ |
 | P2-08 | Seed dev: IoT course + 10 missions + 30 fake students | codex | seed ใช้เฉพาะ local/dev |
+
+### Follow-ups
+- `clone_course` ยังไม่คัดลอก quests (เพิ่มพร้อม P2-06/P2-07)
+- ทดสอบขนาดไฟล์ 2 MB / MIME กับ Storage API จริง (บังคับโดย bucket config — ทดสอบไม่ได้ใน local stub)
 
 ## Phase 3–8 (สรุป, แตกย่อยเมื่อเริ่ม phase)
 | ID | Task | AC หลัก |
