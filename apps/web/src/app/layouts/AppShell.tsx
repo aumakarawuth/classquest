@@ -1,13 +1,17 @@
-import { Swords } from 'lucide-react';
+import { LogOut, Swords } from 'lucide-react';
 import { Suspense } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { PageSkeleton } from '@/components/common/PageSkeleton';
+import { ConfirmDialog } from '@/components/common/ConfirmDialog';
 import { ThemeToggle } from '@/components/common/ThemeToggle';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/features/auth/useAuth';
 import { cn } from '@/lib/utils';
 import { fullPath, navAreas, type ShellArea } from '../navigation';
 
 export function AppShell({ area }: { area: ShellArea }) {
   const nav = navAreas[area];
+  const auth = useAuth();
   const primaryItems = nav.items.filter((item) => item.primary);
 
   return (
@@ -48,7 +52,25 @@ export function AppShell({ area }: { area: ShellArea }) {
       <div className="flex min-w-0 flex-col">
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/85 px-4 backdrop-blur sm:px-6">
           <Brand subtitle={nav.title} className="lg:invisible" />
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            {auth.account && (
+              <span className="hidden max-w-48 truncate text-sm text-muted-foreground sm:inline">
+                {auth.account.displayName}
+              </span>
+            )}
+            <ThemeToggle />
+            <ConfirmDialog
+              trigger={
+                <Button variant="ghost" size="icon" aria-label="ออกจากระบบ" title="ออกจากระบบ">
+                  <LogOut aria-hidden />
+                </Button>
+              }
+              title="ออกจากระบบ?"
+              description="คุณจะต้องเข้าสู่ระบบด้วย Google อีกครั้งเพื่อใช้งาน"
+              confirmLabel="ออกจากระบบ"
+              onConfirm={() => void auth.signOut()}
+            />
+          </div>
         </header>
 
         <main id="main-content" tabIndex={-1} className="flex-1 px-4 pt-6 pb-28 sm:px-6 lg:pb-10">
