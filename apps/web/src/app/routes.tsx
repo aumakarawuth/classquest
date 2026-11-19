@@ -66,6 +66,11 @@ const EvidenceCenterPage = lazy(() => import('@/features/evidence/pages/Evidence
 const EvidenceReportPage = lazy(() => import('@/features/evidence/pages/EvidenceReportPage'));
 const SurveyPage = lazy(() => import('@/features/evidence/pages/SurveyPage'));
 
+const AdminOverviewPage = lazy(() => import('@/features/admin/pages/AdminOverviewPage'));
+const QuotaPage = lazy(() => import('@/features/admin/pages/QuotaPage'));
+const BackupPage = lazy(() => import('@/features/admin/pages/BackupPage'));
+const SystemSettingsPage = lazy(() => import('@/features/admin/pages/SettingsPage'));
+
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
@@ -122,14 +127,22 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     classroom: <ClassroomPage />,
     evidence: <EvidenceCenterPage />,
   },
-  admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },
+  admin: {
+    '': <AdminOverviewPage />,
+    users: <UsersPage />,
+    roles: <RolesPage />,
+    audit: <AuditLogPage />,
+    quota: <QuotaPage />,
+    backup: <BackupPage />,
+    settings: <SystemSettingsPage />,
+  },
 };
 
 /** Phase in which each area's pages are delivered (shown on placeholders). */
 const plannedPhase: Record<ShellArea, string> = {
   student: 'Phase 2–6',
   teacher: 'Phase 2–6',
-  admin: 'Phase 6',
+  admin: 'ระยะถัดไป',
 };
 
 function areaRoutes(area: ShellArea): RouteObject {

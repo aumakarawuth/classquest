@@ -1,0 +1,51 @@
+name: Weekly encrypted backup
+# Supabase Free has no downloadable backups (ADR-0002). This dumps the database, encrypts it with `age`
+# (public key in secrets; only the holder of the private key can decrypt) and keeps it as a 30-day artifact.
+on:
+  schedule:
+    - cron: '41 19 * * 6' # Sunday 02:41 Asia/Bangkok
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check configuration
+        id: cfg
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          BACKUP_AGE_PUBLIC_KEY: ${{ secrets.BACKUP_AGE_PUBLIC_KEY }}
+        run: echo "configured=$([ -n "$SUPABASE_DB_URL" ] && [ -n "$BACKUP_AGE_PUBLIC_KEY" ] && echo yes || echo no)" >> "$GITHUB_OUTPUT"
+      - name: Install PostgreSQL client 17 and age (retries)
+        if: steps.cfg.outputs.configured == 'yes'
+        run: |
+          for i in 1 2 3 4 5; do
+            sudo apt-get -o Acquire::Retries=5 update -q &&
+            sudo apt-get -o Acquire::Retries=5 install -y -q postgresql-common age &&
+            sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y &&
+            sudo apt-get -o Acquire::Retries=5 install -y -q postgresql-client-17 && exit 0
+            sleep $((i * 20))
+          done
+          exit 1
+      - name: Dump and encrypt
+        if: steps.cfg.outputs.configured == 'yes'
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          BACKUP_AGE_PUBLIC_KEY: ${{ secrets.BACKUP_AGE_PUBLIC_KEY }}
+        run: |
+          set -euo pipefail
+          stamp=$(date -u +%Y%m%dT%H%MZ)
+          /usr/lib/postgresql/17/bin/pg_dump "$SUPABASE_DB_URL" --no-owner --no-privileges \
+            --schema=public --schema=private --schema=auth --schema=storage -Fc \
+            | age -r "$BACKUP_AGE_PUBLIC_KEY" > "classquest-$stamp.dump.age"
+          test -s "classquest-$stamp.dump.age"
+          psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -tAc "select private.mark_backup()" > /dev/null
+      - uses: actions/upload-artifact@v4
+        if: steps.cfg.outputs.configured == 'yes'
+        with:
+          name: classquest-backup
+          path: classquest-*.dump.age
+          retention-days: 30
+          if-no-files-found: error
