@@ -11,7 +11,7 @@
 | `join_course_by_code(_code)` | student | text | ตรวจ active/หมดอายุ/จำนวนครั้ง/archived; เข้าซ้ำ idempotent ไม่นับครั้ง |
 | `clone_course(_source_id, _term, _academic_year, _classroom)` | course teacher | | คัดลอก units/lessons/resources + remap prerequisite เป็น draft (ไม่คัดลอกนักเรียน); quests/quizzes/competencies จะเพิ่มเมื่อมีตาราง |
 | `complete_lesson(lesson_id)` | student | | ตรวจ unlock rule, progress, XP (idempotent) |
-| `submit_quest(quest_id, text, url, storage_path)` | student | | ตรวจ prerequisite, due, resubmission limit |
+| `submit_quest(_quest_id, _text, _url, _storage_path)` | student | | ตรวจ published/สมาชิก, วิธีส่งที่อนุญาต, https, ไฟล์ต้องเป็นของตนใน `{course}/{user}/`, prerequisite approved, ห้ามส่งระหว่างรอตรวจ, `max_attempts`, กำหนดส่ง (`allow_late` → `is_late`) |
 | `review_submission(submission_id, decision, score, rubric, feedback, idempotency_key)` | teacher | | review + rubric + competency + XP + badge |
 | `start_quiz_attempt(quiz_id)` | student | | สุ่มคำถาม, คืนคำถามไม่มีเฉลย |
 | `submit_quiz_attempt(attempt_id, answers)` | student | jsonb | auto-grade, XP |
