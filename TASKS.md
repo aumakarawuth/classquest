@@ -19,9 +19,9 @@
 | P1-02 | ขยาย CI: gitleaks, cache Playwright, supabase test db | codex | todo | PR แสดง check เขียว |
 | P1-03 | Design tokens + Tailwind + shadcn + light/dark + fonts | claude | done | toggle theme, contrast AA ตรวจด้วย axe |
 | P1-04 | App shell: layouts 3 role, sidebar/bottom nav, states components | claude | done | responsive 360/768/1280px, keyboard nav |
-| P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | claude | review | migration ผ่าน `supabase/tests/local/run.sh`; สร้าง cloud project รอ slot ว่าง (free org มี 2 active projects แล้ว) |
+| P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | claude | in-progress (claude) | migration ผ่าน `supabase/tests/local/run.sh`; สร้าง cloud project รอ slot ว่าง (free org มี 2 active projects แล้ว) |
 | P1-06 | Google sign-in (Workspace Internal, ADR-0006) + domain restriction + pending approval + role guard routes | codex | todo | อีเมลนอกโดเมนถูกปฏิเสธฝั่ง DB; ผู้ใช้ใหม่ status=pending เข้า dashboard ไม่ได้จนอนุมัติ |
-| P1-07 | RLS helpers + policies + pgTAP tests | codex | todo | student เปลี่ยน role/อ่านวิชาอื่น ไม่ได้ (test) |
+| P1-07 | RLS helpers + policies + pgTAP tests | claude | review | student เปลี่ยน role/อ่านวิชาอื่น ไม่ได้ (test) |
 | P1-08 | Admin: approve users, roles, audit log list | claude(UI)+codex(RPC) | todo | ทุกการเปลี่ยน role มี audit row |
 
 ## Phase 2 Core Learning
