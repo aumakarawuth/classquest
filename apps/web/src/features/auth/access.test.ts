@@ -19,7 +19,9 @@ it('active account without role gets no area', () => {
   expect(defaultArea(base)).toBeNull();
 });
 
-it('picks the highest role as landing area', () => {
+it('lands teachers on the teacher area (even admins), others by role', () => {
+  expect(defaultArea({ ...base, roles: ['admin', 'teacher'] })).toBe('teacher');
+  expect(defaultArea({ ...base, roles: ['admin'] })).toBe('admin');
   expect(defaultArea({ ...base, roles: ['student', 'teacher'] })).toBe('teacher');
   expect(defaultArea({ ...base, roles: ['student'] })).toBe('student');
 });

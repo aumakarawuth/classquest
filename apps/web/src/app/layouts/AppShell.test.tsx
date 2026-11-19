@@ -16,7 +16,7 @@ function renderShell(signOut = vi.fn()) {
       email: 't@school.test',
       displayName: 'ครูทดสอบ',
       status: 'active',
-      roles: ['teacher'],
+      roles: ['teacher', 'admin'],
     },
     accountError: false,
     signIn: vi.fn(),
@@ -46,6 +46,9 @@ it('renders teacher navigation and passes axe', async () => {
   const { container } = renderShell();
   expect(screen.getByRole('navigation', { name: 'เมนูครูผู้สอน' })).toBeInTheDocument();
   expect(screen.getByText('ครูทดสอบ')).toBeInTheDocument();
+  const switcher = screen.getByRole('navigation', { name: 'สลับบทบาท' });
+  expect(switcher).toHaveTextContent('ครูผู้สอน');
+  expect(switcher).toHaveTextContent('ผู้ดูแลระบบ');
   expect((await axe(container)).violations).toEqual([]);
 });
 
