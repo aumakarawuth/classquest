@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/features/auth/useAuth';
 import { cn } from '@/lib/utils';
 import { fullPath, navAreas, type ShellArea } from '../navigation';
+import { AreaSwitcher } from './AreaSwitcher';
 
 export function AppShell({ area }: { area: ShellArea }) {
   const nav = navAreas[area];
@@ -53,6 +54,7 @@ export function AppShell({ area }: { area: ShellArea }) {
         <header className="sticky top-0 z-30 print:hidden flex h-16 items-center justify-between gap-4 border-b bg-background/85 px-4 backdrop-blur sm:px-6">
           <Brand subtitle={nav.title} className="lg:invisible" />
           <div className="flex items-center gap-2">
+            <AreaSwitcher current={area} />
             {auth.account && (
               <span className="hidden max-w-48 truncate text-sm text-muted-foreground sm:inline">
                 {auth.account.displayName}
