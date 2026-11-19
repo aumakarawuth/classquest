@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import { CourseXpCard } from '@/features/gamification/CourseXpCard';
 import { CourseQuizzes } from '@/features/assessment/components/CourseQuizzes';
 import { ClassroomLink } from '@/features/classroom/ClassroomLink';
+import { CourseSurveys } from '@/features/evidence/components/CourseSurveys';
 import { LeaderboardCard } from '@/features/gamification/LeaderboardCard';
 import { QuestStageProgress } from '../components/QuestStageProgress';
 import { questStageLabels } from '../resources';
@@ -83,6 +84,7 @@ export default function StudentCoursePage() {
           <h2 className="font-semibold">เส้นทาง QUEST</h2>
           <QuestStageProgress stages={r.stages} />
         </Card>
+        <CourseSurveys courseId={courseId} />
         <CourseQuizzes courseId={courseId} />
         <LeaderboardCard courseId={courseId} />
       </div>

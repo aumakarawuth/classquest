@@ -37,6 +37,10 @@ vi.mock('@/features/classroom/api', async (orig) => ({
   ...(await orig<typeof import('@/features/classroom/api')>()),
   getConnection: vi.fn().mockResolvedValue('https://classroom.google.com/c/abc'),
 }));
+vi.mock('@/features/evidence/api', async (orig) => ({
+  ...(await orig<typeof import('@/features/evidence/api')>()),
+  listSurveys: vi.fn().mockResolvedValue([]),
+}));
 vi.mock('./api', async (orig) => ({
   ...(await orig<typeof import('./api')>()),
   getLesson: vi.fn(),
