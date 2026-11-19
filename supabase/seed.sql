@@ -1,0 +1,2 @@
+-- DEVELOPMENT ONLY. Never run against production (see DEPLOYMENT.md).
+-- Demo IoT course and 30 fictional students are added in P2-08.
