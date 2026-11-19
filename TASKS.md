@@ -7,7 +7,7 @@
 | ID | Task | Owner | Status | Acceptance Criteria |
 |---|---|---|---|---|
 | P0-01 | Requirements, architecture, docs ชุดแรก | claude | review | เอกสารครบตาม §15, รอผู้อนุมัติ |
-| P0-02 | อนุมัติ Architecture & MVP scope | human | todo | ผู้รับผิดชอบโครงการลงความเห็นใน PR/Issue |
+| P0-02 | อนุมัติ Architecture & MVP scope (อนุมัติแล้ว, repo Public) | human | done | ผู้รับผิดชอบโครงการลงความเห็นใน PR/Issue |
 | P0-03 | ยืนยัน free tier limits จากหน้าทางการ + บันทึกวันที่ | human/codex | todo | ตารางใน FREE_TIER_BUDGET.md มีลิงก์+วันที่ตรวจ |
 | P0-04 | ตรวจเกณฑ์การประกวดทั้ง 2 ประเภท map กับ Evidence Center | human/claude | todo | ตาราง mapping เกณฑ์ ↔ ฟีเจอร์ |
 
