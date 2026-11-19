@@ -148,6 +148,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             ออกแบบหน่วยและบทเรียน
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/quests`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            จัดการภารกิจ
+          </Link>
         </Card>
       </div>
     </div>
