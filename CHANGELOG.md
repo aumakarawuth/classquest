@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P1-08: RPC `admin_set_user_status`/`admin_set_user_role` (audited, idempotent, กัน self-lockout), `private.bootstrap_admin`, หน้า Admin › ผู้ใช้งาน (อนุมัติ/สิทธิ์/ระงับ, ค้นหา, แบ่งหน้า), สิทธิ์การใช้งาน, Audit Log; pgTAP +14
 - P1-06: Google sign-in (Supabase PKCE), AuthProvider + TanStack Query, หน้า Login/Callback/รออนุมัติ/ไม่มีสิทธิ์, RequireArea guard ตาม role จาก DB, ออกจากระบบพร้อมยืนยัน
 ### Removed
 - หน้าแรกแบบ "ตัวอย่างโครงหน้า" (ถูกแทนด้วย login)
