@@ -21,7 +21,13 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium (retries; runner image already has most system deps)
+        run: |
+          for i in 1 2 3; do
+            npx playwright install --with-deps chromium && exit 0
+            echo "attempt $i failed; retrying in $((i * 20))s"; sleep $((i * 20))
+          done
+          npx playwright install chromium
       - run: npm run test:e2e
 
   database:
@@ -29,6 +35,13 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update -q && sudo apt-get install -y -q postgresql-16 postgresql-16-pgtap
+      - name: Install PostgreSQL 16 + pgTAP (retries for flaky apt mirrors)
+        run: |
+          for i in 1 2 3 4 5; do
+            sudo apt-get -o Acquire::Retries=5 update -q &&
+            sudo apt-get -o Acquire::Retries=5 install -y -q postgresql-16 postgresql-16-pgtap && exit 0
+            echo "apt attempt $i failed; retrying in $((i * 20))s"; sleep $((i * 20))
+          done
+          exit 1
       - run: PG_BIN=/usr/lib/postgresql/16/bin supabase/tests/local/run.sh
       - run: PG_BIN=/usr/lib/postgresql/16/bin supabase/tests/local/run.sh --seed
