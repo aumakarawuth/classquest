@@ -3,7 +3,8 @@ import remarkGfm from 'remark-gfm';
 
 /**
  * Safe Markdown: raw HTML is not rendered (react-markdown default), and only
- * http(s)/mailto links survive URL sanitising.
+ * http(s)/mailto links survive URL sanitising. Headings start at h2 because the
+ * page title is the h1.
  */
 export function Markdown({ children }: { children: string }) {
   return (
@@ -21,8 +22,8 @@ export function Markdown({ children }: { children: string }) {
             />
           ),
           h1: ({ node: _node, ...props }) => <h2 {...props} className="text-xl font-bold" />,
-          h2: ({ node: _node, ...props }) => <h3 {...props} className="text-lg font-semibold" />,
-          h3: ({ node: _node, ...props }) => <h4 {...props} className="font-semibold" />,
+          h2: ({ node: _node, ...props }) => <h2 {...props} className="text-lg font-semibold" />,
+          h3: ({ node: _node, ...props }) => <h3 {...props} className="font-semibold" />,
           ul: ({ node: _node, ...props }) => <ul {...props} className="list-disc space-y-1 pl-6" />,
           ol: ({ node: _node, ...props }) => (
             <ol {...props} className="list-decimal space-y-1 pl-6" />

@@ -23,6 +23,8 @@ const TeacherCourseDetailPage = lazy(
 const StudentCoursesPage = lazy(() => import('@/features/courses/pages/StudentCoursesPage'));
 const CourseBuilderPage = lazy(() => import('@/features/learning/pages/CourseBuilderPage'));
 const LessonEditorPage = lazy(() => import('@/features/learning/pages/LessonEditorPage'));
+const StudentCoursePage = lazy(() => import('@/features/learning/pages/StudentCoursePage'));
+const LessonViewerPage = lazy(() => import('@/features/learning/pages/LessonViewerPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -33,10 +35,8 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/lessons/:lessonId', element: <LessonEditorPage /> },
   ],
   student: [
-    {
-      path: 'courses/:courseId',
-      element: <ComingSoon title="รายละเอียดรายวิชา" phase="P2-04 (เส้นทางการเรียนและบทเรียน)" />,
-    },
+    { path: 'courses/:courseId', element: <StudentCoursePage /> },
+    { path: 'courses/:courseId/lessons/:lessonId', element: <LessonViewerPage /> },
   ],
 };
 
