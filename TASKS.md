@@ -55,8 +55,8 @@
 | P4-04 — **done** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
 | P5-01 — **done** | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
 | P5-02 — **done** | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
-| P6-01 — **review (claude)** | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
-| P6-02 | Portfolio + reflection + print view | private by default |
+| P6-01 — **done** | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
+| P6-02 — **review (claude)** | Portfolio + reflection + print view | private by default |
 | P6-03 | Evidence center + anonymized export + print report | ไม่มีชื่อจริงใน anonymized export |
 | P6-04 | Admin backup/export + quota page | restore drill สำเร็จ |
 | P7-01 | AI Tutor edge function + limits + PII scrub + fallback | flag off → เมนูซ่อน/แสดง hint library |

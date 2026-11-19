@@ -15,7 +15,7 @@ export function AppShell({ area }: { area: ShellArea }) {
   const primaryItems = nav.items.filter((item) => item.primary);
 
   return (
-    <div className="min-h-dvh lg:grid lg:grid-cols-[16rem_1fr]">
+    <div className="min-h-dvh lg:grid lg:grid-cols-[16rem_1fr] print:block">
       <a
         href="#main-content"
         className="sr-only z-50 rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
@@ -23,7 +23,7 @@ export function AppShell({ area }: { area: ShellArea }) {
         ข้ามไปยังเนื้อหาหลัก
       </a>
 
-      <aside className="hidden border-r bg-card lg:sticky lg:top-0 lg:flex lg:h-dvh lg:flex-col">
+      <aside className="hidden border-r print:hidden bg-card lg:sticky lg:top-0 lg:flex lg:h-dvh lg:flex-col">
         <Brand subtitle={nav.title} className="px-5 py-5" />
         <nav aria-label={`เมนู${nav.title}`} className="flex-1 overflow-y-auto px-3 pb-4">
           <ul className="space-y-1">
@@ -50,7 +50,7 @@ export function AppShell({ area }: { area: ShellArea }) {
       </aside>
 
       <div className="flex min-w-0 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/85 px-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-30 print:hidden flex h-16 items-center justify-between gap-4 border-b bg-background/85 px-4 backdrop-blur sm:px-6">
           <Brand subtitle={nav.title} className="lg:invisible" />
           <div className="flex items-center gap-2">
             {auth.account && (
@@ -82,7 +82,7 @@ export function AppShell({ area }: { area: ShellArea }) {
 
       <nav
         aria-label={`เมนูหลัก${nav.title}`}
-        className="fixed inset-x-0 bottom-0 z-40 border-t bg-card/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 print:hidden border-t bg-card/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
       >
         <ul
           className="mx-auto grid max-w-lg"
