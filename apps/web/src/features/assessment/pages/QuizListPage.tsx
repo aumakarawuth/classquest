@@ -29,6 +29,12 @@ export default function QuizListPage() {
           >
             คลังข้อสอบ
           </Link>
+          <Link
+            to={`/teacher/courses/${courseId}/prepost`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            เปรียบเทียบก่อน–หลังเรียน
+          </Link>
           <Link to={`/teacher/courses/${courseId}/quizzes/new`} className={buttonVariants()}>
             <Plus aria-hidden />
             สร้างแบบทดสอบ

@@ -49,6 +49,7 @@ const QuizResultsPage = lazy(() => import('@/features/assessment/pages/QuizResul
 const QuizIntroPage = lazy(() => import('@/features/assessment/pages/QuizIntroPage'));
 const TakeQuizPage = lazy(() => import('@/features/assessment/pages/TakeQuizPage'));
 const AttemptResultPage = lazy(() => import('@/features/assessment/pages/AttemptResultPage'));
+const PrePostReportPage = lazy(() => import('@/features/assessment/pages/PrePostReportPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -69,6 +70,7 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/quizzes/:quizId', element: <QuizEditorPage /> },
     { path: 'courses/:courseId/question-bank', element: <QuestionBankPage /> },
     { path: 'courses/:courseId/quizzes/:quizId/results', element: <QuizResultsPage /> },
+    { path: 'courses/:courseId/prepost', element: <PrePostReportPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
