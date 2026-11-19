@@ -11,7 +11,6 @@ import {
   History,
   LayoutDashboard,
   Link2,
-  Map,
   Settings,
   ShieldCheck,
   Swords,
@@ -49,7 +48,6 @@ export const navAreas: Record<ShellArea, NavArea> = {
     items: [
       { path: '', label: 'หน้าหลัก', icon: LayoutDashboard, primary: true },
       { path: 'courses', label: 'รายวิชาของฉัน', icon: BookOpen, primary: true },
-      { path: 'roadmap', label: 'เส้นทางการเรียน', icon: Map },
       { path: 'quests', label: 'ภารกิจ', icon: Swords, primary: true },
       { path: 'achievements', label: 'ความสำเร็จ', icon: Trophy, primary: true },
       { path: 'competency', label: 'สมรรถนะ', icon: Target },
