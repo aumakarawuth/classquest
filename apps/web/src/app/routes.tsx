@@ -11,7 +11,7 @@ import { navAreas, type ShellArea } from './navigation';
 import { NotFoundPage } from './NotFoundPage';
 import { RouteError } from './pages/RouteError';
 
-const StudentDashboard = lazy(() => import('./pages/StudentDashboard'));
+const StudentDashboard = lazy(() => import('@/features/hub/QuestHubPage'));
 const UsersPage = lazy(() => import('@/features/admin/pages/UsersPage'));
 const RolesPage = lazy(() => import('@/features/admin/pages/RolesPage'));
 const AuditLogPage = lazy(() => import('@/features/admin/pages/AuditLogPage'));
