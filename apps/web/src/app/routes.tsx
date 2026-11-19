@@ -53,6 +53,10 @@ const PrePostReportPage = lazy(() => import('@/features/assessment/pages/PrePost
 
 const ClassroomPage = lazy(() => import('@/features/classroom/pages/ClassroomPage'));
 
+const TeacherLabsPage = lazy(() => import('@/features/labs/pages/TeacherLabsPage'));
+const StudentLabsPage = lazy(() => import('@/features/labs/pages/StudentLabsPage'));
+const LabDetailPage = lazy(() => import('@/features/labs/pages/LabDetailPage'));
+
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
@@ -73,12 +77,14 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/question-bank', element: <QuestionBankPage /> },
     { path: 'courses/:courseId/quizzes/:quizId/results', element: <QuizResultsPage /> },
     { path: 'courses/:courseId/prepost', element: <PrePostReportPage /> },
+    { path: 'courses/:courseId/labs', element: <TeacherLabsPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
     { path: 'courses/:courseId/lessons/:lessonId', element: <LessonViewerPage /> },
     { path: 'quests/:questId', element: <QuestDetailPage /> },
     { path: 'quizzes/:quizId', element: <QuizIntroPage /> },
+    { path: 'labs/:labId', element: <LabDetailPage /> },
     { path: 'attempts/:attemptId', element: <TakeQuizPage /> },
     { path: 'attempts/:attemptId/result', element: <AttemptResultPage /> },
   ],
@@ -92,6 +98,7 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     quests: <QuestBoardPage />,
     achievements: <AchievementsPage />,
     competency: <MyCompetencyPage />,
+    labs: <StudentLabsPage />,
   },
   teacher: {
     courses: <TeacherCoursesPage />,

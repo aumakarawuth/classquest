@@ -53,8 +53,8 @@
 | P4-02 — **done** | Attempt RPC + auto-grade + manual short answer | `is_correct` ไม่ปรากฏใน network ของ student (Playwright) |
 | P4-03 — **done** | Pre/Post-test comparison report | คำนวณ gain จากข้อมูลจริง |
 | P4-04 — **done** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
-| P5-01 — **review (claude)** | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
-| P5-02 | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
+| P5-01 — **done** | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
+| P5-02 — **review (claude)** | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
 | P6-01 | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
 | P6-02 | Portfolio + reflection + print view | private by default |
 | P6-03 | Evidence center + anonymized export + print report | ไม่มีชื่อจริงใน anonymized export |
