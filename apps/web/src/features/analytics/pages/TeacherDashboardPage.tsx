@@ -256,6 +256,12 @@ function DashboardBody({ d, courseId }: { d: Dashboard; courseId: string }) {
                   >
                     {s.display_name}
                   </Link>
+                  <Link
+                    to={`/teacher/courses/${courseId}/portfolio/${s.user_id}`}
+                    className="ml-3 text-xs text-muted-foreground underline"
+                  >
+                    แฟ้มผลงาน
+                  </Link>
                   <ul className="flex flex-wrap gap-1">
                     {s.flags.map((f) => (
                       <li key={f} className="rounded-full bg-warning/25 px-2 py-0.5 text-xs">
