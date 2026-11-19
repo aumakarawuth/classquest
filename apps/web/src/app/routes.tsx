@@ -25,6 +25,10 @@ const CourseBuilderPage = lazy(() => import('@/features/learning/pages/CourseBui
 const LessonEditorPage = lazy(() => import('@/features/learning/pages/LessonEditorPage'));
 const StudentCoursePage = lazy(() => import('@/features/learning/pages/StudentCoursePage'));
 const LessonViewerPage = lazy(() => import('@/features/learning/pages/LessonViewerPage'));
+const TeacherQuestsPage = lazy(() => import('@/features/quests/pages/TeacherQuestsPage'));
+const QuestEditorPage = lazy(() => import('@/features/quests/pages/QuestEditorPage'));
+const QuestBoardPage = lazy(() => import('@/features/quests/pages/QuestBoardPage'));
+const QuestDetailPage = lazy(() => import('@/features/quests/pages/QuestDetailPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -33,16 +37,23 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId', element: <TeacherCourseDetailPage /> },
     { path: 'courses/:courseId/builder', element: <CourseBuilderPage /> },
     { path: 'courses/:courseId/lessons/:lessonId', element: <LessonEditorPage /> },
+    { path: 'courses/:courseId/quests', element: <TeacherQuestsPage /> },
+    { path: 'courses/:courseId/quests/:questId', element: <QuestEditorPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
     { path: 'courses/:courseId/lessons/:lessonId', element: <LessonViewerPage /> },
+    { path: 'quests/:questId', element: <QuestDetailPage /> },
   ],
 };
 
 /** Pages that are implemented; everything else renders an honest ComingSoon. */
 const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
-  student: { '': <StudentDashboard />, courses: <StudentCoursesPage /> },
+  student: {
+    '': <StudentDashboard />,
+    courses: <StudentCoursesPage />,
+    quests: <QuestBoardPage />,
+  },
   teacher: { courses: <TeacherCoursesPage /> },
   admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },
 };
