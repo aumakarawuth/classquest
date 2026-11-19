@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P4-03: `anonymous_codes` (S01.. คงที่, สุ่มลำดับ, ครูเท่านั้น), RPC `prepost_report` (ครั้งแรกที่ตรวจเสร็จ, ผลต่าง, normalized gain, ไม่เติมค่าแทน); หน้าเปรียบเทียบก่อน–หลังเรียน (สรุปเฉพาะคู่ที่ครบ, SD, paired t, กราฟ Recharts + ตาราง, CSV พร้อม BOM และกัน formula injection)
 - P4-02: quiz_attempts/quiz_answers; RPC `start_quiz_attempt` (สุ่มข้อ/ตัวเลือกฝั่ง server, คืนคำถามไม่มีเฉลย, ทำต่อได้, ตรวจช่วงเวลา/จำนวนครั้ง), `submit_quiz_attempt` (ตรวจอัตโนมัติ, ตัวเลือกต้องเป็นที่แสดงในครั้งนั้น, เติมคำแบบ normalize, เวลา + grace 60 วินาที), `grade_quiz_answer`, `get_attempt_result` (เฉลยหลัง `answers_visible_at` เท่านั้น); XP เมื่อผ่าน + หลักฐานสมรรถนะ; หน้าแบบทดสอบในหน้ารายวิชา, เริ่ม/ทำต่อ, ทำแบบทดสอบ (ตัวจับเวลา, draft ในเครื่อง, ยืนยันก่อนส่ง, ส่งอัตโนมัติเมื่อหมดเวลา), ผลและเฉลย, หน้าผล/ตรวจข้อเขียนของครู
 - P4-01: quizzes (pre/post-test/quiz/ปฏิบัติ, เวลา, สุ่มข้อ/ตัวเลือก, จำนวนครั้ง, ช่วงเวลา, เวลาเฉลย, เกณฑ์ผ่าน, XP), questions (ปรนัย/ถูกผิด/เติมคำ, สมรรถนะ, หมวด), question_options, quiz_questions; นักเรียนอ่านคลังข้อสอบ/เฉลยไม่ได้; RPC `save_question` (ตรวจรูปแบบ), `set_quiz_questions`; หน้า แบบทดสอบ, ตัวแก้ไขแบบทดสอบ, คลังข้อสอบ
 - P4-04: competencies (Skill Tree ผ่าน parent_id, เกณฑ์ผ่าน %), competency_mappings, competency_results (หลักฐาน; ผลล่าสุดตัดสินสถานะ); rubric criterion ↔ สมรรถนะ; trigger บันทึกหลักฐานจาก Rubric/คะแนนภารกิจ; RPC `record_competency_result` (ครูประเมินปฏิบัติ, audit), `competency_matrix`; หน้า จัดการสมรรถนะ, ตารางสมรรถนะ, รายงานรายบุคคล (ครู), สมรรถนะของฉัน (นักเรียน)
