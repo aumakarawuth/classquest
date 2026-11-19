@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P4-01: quizzes (pre/post-test/quiz/ปฏิบัติ, เวลา, สุ่มข้อ/ตัวเลือก, จำนวนครั้ง, ช่วงเวลา, เวลาเฉลย, เกณฑ์ผ่าน, XP), questions (ปรนัย/ถูกผิด/เติมคำ, สมรรถนะ, หมวด), question_options, quiz_questions; นักเรียนอ่านคลังข้อสอบ/เฉลยไม่ได้; RPC `save_question` (ตรวจรูปแบบ), `set_quiz_questions`; หน้า แบบทดสอบ, ตัวแก้ไขแบบทดสอบ, คลังข้อสอบ
 - P4-04: competencies (Skill Tree ผ่าน parent_id, เกณฑ์ผ่าน %), competency_mappings, competency_results (หลักฐาน; ผลล่าสุดตัดสินสถานะ); rubric criterion ↔ สมรรถนะ; trigger บันทึกหลักฐานจาก Rubric/คะแนนภารกิจ; RPC `record_competency_result` (ครูประเมินปฏิบัติ, audit), `competency_matrix`; หน้า จัดการสมรรถนะ, ตารางสมรรถนะ, รายงานรายบุคคล (ครู), สมรรถนะของฉัน (นักเรียน)
 - P3-04: Leaderboard (ต้องเปิดทั้งระบบ `feature.leaderboard` และรายวิชา, นักเรียน opt-in, ชื่อเล่น/เลเวล/XP เท่านั้น, ชื่อว่าง → ผู้เล่นนิรนาม, top 20 + ตัวเอง); RPC `get_leaderboard`, `leaderboard_status`, `set_course_leaderboard` (audit); การ์ด Leaderboard + ตั้งค่าชื่อเล่น/opt-in ของนักเรียน, สวิตช์ของครู
 - P3-02: `badges` (ระบบ 5 + รายวิชา; กฎ lessons_completed/quests_approved/boss_approved/level_reached หรือมอบเอง; XP โบนัส), `user_badges` (unique, เขียนผ่าน server เท่านั้น); ประเมินกฎอัตโนมัติทุกครั้งที่ได้ XP (trigger, idempotent), RPC `award_badge` (audit); หน้า ความสำเร็จ (นักเรียน) และ Badge ของรายวิชา (สร้าง/ปิดใช้งาน/มอบ)

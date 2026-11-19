@@ -49,10 +49,10 @@
 | P3-02 — **done** | Badges + rules + Achievements page | award idempotent |
 | P3-03 | Skill tree (competency parent) + streak weekly | ไม่หัก XP เมื่อขาด |
 | P3-04 — **done** | Leaderboard toggle + opt-out | ไม่มี email/คะแนนสอบใน response |
-| P4-01 | Quiz builder + question bank + random | |
+| P4-01 — **review (claude)** | Quiz builder + question bank + random | |
 | P4-02 | Attempt RPC + auto-grade + manual short answer | `is_correct` ไม่ปรากฏใน network ของ student (Playwright) |
 | P4-03 | Pre/Post-test comparison report | คำนวณ gain จากข้อมูลจริง |
-| P4-04 — **review (claude)** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
+| P4-04 — **done** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
 | P5-01 | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
 | P5-02 | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
 | P6-01 | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
