@@ -21,7 +21,13 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - name: Install Playwright Chromium (retries; runner image already has most system deps)
+        run: |
+          for i in 1 2 3; do
+            npx playwright install --with-deps chromium && exit 0
+            echo "attempt $i failed; retrying in $((i * 20))s"; sleep $((i * 20))
+          done
+          npx playwright install chromium
       - run: npm run test:e2e
 
   database:
