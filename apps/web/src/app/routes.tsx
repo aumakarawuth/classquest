@@ -57,6 +57,8 @@ const TeacherLabsPage = lazy(() => import('@/features/labs/pages/TeacherLabsPage
 const StudentLabsPage = lazy(() => import('@/features/labs/pages/StudentLabsPage'));
 const LabDetailPage = lazy(() => import('@/features/labs/pages/LabDetailPage'));
 
+const TeacherDashboardPage = lazy(() => import('@/features/analytics/pages/TeacherDashboardPage'));
+
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
@@ -101,6 +103,8 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     labs: <StudentLabsPage />,
   },
   teacher: {
+    '': <TeacherDashboardPage />,
+    analytics: <TeacherDashboardPage />,
     courses: <TeacherCoursesPage />,
     reviews: <ReviewQueuePage />,
     competency: <TeacherCompetencyIndexPage />,

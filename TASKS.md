@@ -54,8 +54,8 @@
 | P4-03 — **done** | Pre/Post-test comparison report | คำนวณ gain จากข้อมูลจริง |
 | P4-04 — **done** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
 | P5-01 — **done** | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
-| P5-02 — **review (claude)** | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
-| P6-01 | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
+| P5-02 — **done** | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
+| P6-01 — **review (claude)** | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
 | P6-02 | Portfolio + reflection + print view | private by default |
 | P6-03 | Evidence center + anonymized export + print report | ไม่มีชื่อจริงใน anonymized export |
 | P6-04 | Admin backup/export + quota page | restore drill สำเร็จ |
