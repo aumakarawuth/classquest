@@ -6,7 +6,8 @@
 | DB/RLS | pgTAP (`supabase test db`) | ทุก policy: student/teacher/other-course/anon |
 | Integration | Vitest + local Supabase | RPC: submit/review/quiz/XP idempotency, concurrency (Promise.all 30) |
 | E2E | Playwright (`--trace off`) | login (test helper), join course, lesson, quest submit, review, quiz; viewport mobile/tablet/desktop; @axe-core/playwright |
-| Load | k6 (รันเองจาก local/GitHub Actions) | 30 VUs: browse lesson, quiz attempt, submit quest พร้อมกัน 10 นาที |
+| Load | k6 `tests/load/classroom.js` (staging เท่านั้น) | 30 VU พร้อมกัน: sign-in → roadmap/XP → จบบทเรียน → ส่งภารกิจ → ทำแบบทดสอบ; เกณฑ์ p95 < 800 ms, error < 1% |
+| CSP | Playwright `e2e/csp.spec.ts` | ใช้ CSP จริงจาก `_headers` กับ build แล้วต้องไม่มีการบล็อก |
 
 ## วิธีรัน DB tests
 - Local ไม่ใช้ Docker: `supabase/tests/local/run.sh` (ต้องมี postgresql-16 + postgresql-16-pgtap)

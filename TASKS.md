@@ -47,7 +47,7 @@
 |---|---|---|
 | P3-01 — **done** | (ledger + award จาก quest เสร็จใน P2-07) levels editable + level calc view | XP = SUM(ledger), unique constraint ทดสอบ race 30 concurrent |
 | P3-02 — **done** | Badges + rules + Achievements page | award idempotent |
-| P3-03 — **review (claude)** | Skill tree (competency parent) + streak weekly | ไม่หัก XP เมื่อขาด |
+| P3-03 — **done** | Skill tree (competency parent) + streak weekly | ไม่หัก XP เมื่อขาด |
 | P3-04 — **done** | Leaderboard toggle + opt-out | ไม่มี email/คะแนนสอบใน response |
 | P4-01 — **done** | Quiz builder + question bank + random | |
 | P4-02 — **done** | Attempt RPC + auto-grade + manual short answer | `is_correct` ไม่ปรากฏใน network ของ student (Playwright) |
@@ -61,6 +61,6 @@
 | P6-04 — **done** | Admin backup/export + quota page | restore drill สำเร็จ |
 | P7-01 | AI Tutor edge function + limits + PII scrub + fallback | flag off → เมนูซ่อน/แสดง hint library |
 | P7-02 | Classroom API Phase B (read-only scopes) | ไม่มีการเขียนกลับโดยไม่มี confirm dialog |
-| P8-01 | k6 load test 30 VUs | บันทึก p95, error rate |
-| P8-02 | Security review + RLS audit | ไม่มี advisor error |
-| P8-03 | Deploy Cloudflare Pages + docs ภาษาไทย + pilot | DoD §19 ครบ |
+| P8-01 — **script ready (claude)**, รอ staging | k6 load test 30 VUs | บันทึก p95, error rate |
+| P8-02 — **checklist ready (claude)**, ส่วน 🟡 รอ project จริง | Security review + RLS audit | ไม่มี advisor error |
+| P8-03 — **docs/config ready (claude)**, รอ project จริง | Deploy Cloudflare Pages + docs ภาษาไทย + pilot | DoD §19 ครบ |
