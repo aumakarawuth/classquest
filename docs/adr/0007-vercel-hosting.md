@@ -2,7 +2,7 @@
 
 - สถานะ: Accepted (ผู้รับผิดชอบโครงการขอให้ deploy บน Vercel)
 - ตัดสินใจ: เพิ่ม `vercel.json` — build ที่ root ของ monorepo (`npm ci` → `npm run build`), output `apps/web/dist`, SPA rewrite ทุก path ไป `index.html`, security headers; แอปเป็น static SPA ไม่ใช้ Serverless Functions
-- CSP: จะเพิ่มใน `vercel.json` หลัง merge งาน P8-prep (ย้าย inline script ออกก่อน)
+- CSP: ชุดเดียวกับ `apps/web/public/_headers` (ต้องแก้ทั้งสองไฟล์ให้ตรงกัน)
 - ข้อควรระวัง (ตรวจเงื่อนไขล่าสุด):
   - Vercel Hobby ฟรีแต่ระบุไว้สำหรับการใช้งานส่วนบุคคล/ไม่ใช่เชิงพาณิชย์ — การใช้ในสถานศึกษาควรยืนยันกับเงื่อนไขทางการ; ถ้าไม่เข้าเงื่อนไขใช้ Cloudflare Pages ตาม ADR-0001
   - ห้ามเปิด Pro trial หรือผูกบัตร (งบ 0 บาท)
