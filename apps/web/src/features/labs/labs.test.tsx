@@ -65,3 +65,15 @@ it('embeds only when both the system and the lab allow it', async () => {
   renderLab();
   expect(await screen.findByTitle('Wokwi: LED Blink')).toHaveAttribute('sandbox');
 });
+
+it('switches side panel tabs and shows numbered code', async () => {
+  const { default: userEvent } = await import('@testing-library/user-event');
+  vi.mocked(api.getLab).mockResolvedValue(lab);
+  vi.mocked(api.getWokwiEmbedEnabled).mockResolvedValue(false);
+  renderLab();
+  await userEvent.click(await screen.findByRole('tab', { name: 'อุปกรณ์' }));
+  expect(screen.getByRole('tabpanel')).toHaveTextContent('Arduino');
+  await userEvent.click(screen.getByRole('tab', { name: 'ผลลัพธ์' }));
+  expect(screen.getByRole('tabpanel')).toHaveTextContent('LED กระพริบทุก 1 วินาที');
+  expect(screen.getByRole('heading', { name: /โค้ดตัวอย่าง/ })).toBeInTheDocument();
+});
