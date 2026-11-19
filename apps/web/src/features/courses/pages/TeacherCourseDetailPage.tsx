@@ -9,6 +9,7 @@ import { ErrorState } from '@/components/common/ErrorState';
 import { PageSkeleton } from '@/components/common/PageSkeleton';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { CourseLeaderboardToggle } from '@/features/gamification/CourseLeaderboardToggle';
 import { formatThaiDateTime } from '@/lib/datetime';
 import {
   cloneCourse,
@@ -135,6 +136,7 @@ function CourseDetail({ course }: { course: Course }) {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
+        <CourseLeaderboardToggle courseId={course.id} />
         <EnrollmentCodes courseId={course.id} disabled={course.status === 'archived'} />
         <Card className="space-y-3">
           <h2 className="flex items-center gap-2 font-semibold">

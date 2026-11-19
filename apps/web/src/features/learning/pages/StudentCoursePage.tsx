@@ -11,6 +11,7 @@ import { Progress } from '@/components/ui/progress';
 import { getCourse } from '@/features/courses/api';
 import { cn } from '@/lib/utils';
 import { CourseXpCard } from '@/features/gamification/CourseXpCard';
+import { LeaderboardCard } from '@/features/gamification/LeaderboardCard';
 import { QuestStageProgress } from '../components/QuestStageProgress';
 import { questStageLabels } from '../resources';
 import type { RoadmapLesson } from '../roadmap';
@@ -77,6 +78,7 @@ export default function StudentCoursePage() {
           <h2 className="font-semibold">เส้นทาง QUEST</h2>
           <QuestStageProgress stages={r.stages} />
         </Card>
+        <LeaderboardCard courseId={courseId} />
       </div>
 
       {visibleUnits.length === 0 ? (

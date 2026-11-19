@@ -25,6 +25,10 @@ vi.mock('@/features/gamification/api', async (orig) => ({
     next_threshold: 250,
   }),
 }));
+vi.mock('@/features/gamification/leaderboardApi', async (orig) => ({
+  ...(await orig<typeof import('@/features/gamification/leaderboardApi')>()),
+  getLeaderboardStatus: vi.fn().mockResolvedValue({ system_enabled: false, course_enabled: false }),
+}));
 vi.mock('./api', async (orig) => ({
   ...(await orig<typeof import('./api')>()),
   getLesson: vi.fn(),
