@@ -7,12 +7,18 @@
 |---|---|---|
 | --primary | indigo-600 `#4F46E5` | indigo-400 `#818CF8` |
 | --accent (violet) | violet-600 `#7C3AED` | violet-400 |
-| --secondary (cyan) | cyan-600 `#0891B2` | cyan-400 |
-| --success | emerald-600 | emerald-400 |
+| --secondary (cyan) | cyan-700 `#0E7490` (cyan-600 ไม่ผ่าน AA บนพื้นขาว) | cyan-400 |
+| --success | emerald-700 `#047857` | emerald-400 |
 | --warning | amber-500 (ข้อความใช้ amber-800) | amber-400 |
 | --bg / --fg | slate-50 / slate-900 | slate-950 / slate-100 |
 | XP gradient | indigo-500 → violet-500 → cyan-400 | เหมือนกัน |
 ทุกคู่สีข้อความต้องผ่าน WCAG AA (4.5:1)
+
+## Implementation (P1-03)
+- Tokens: `apps/web/src/styles/globals.css` (Tailwind v4 `@theme inline`), ธีมผ่าน `html[data-theme]` + `ThemeProvider` (light/dark/system, จำค่าใน localStorage, ตั้งก่อน first paint)
+- shadcn/ui config: `apps/web/components.json`; เพิ่ม component ด้วย `npx shadcn@latest add <name>` ภายใน `apps/web`
+- Components แรก: `Button`, `Card`, `Progress`, `ThemeToggle`, `XpBar`
+- ตรวจ WCAG AA (รวม contrast) ทั้งสองธีมด้วย `@axe-core/playwright` ใน `e2e/design-system.spec.ts`
 
 ## Typography
 `font-family: "Inter", "Noto Sans Thai", system-ui` (Inter จับละติน, Noto Sans Thai จับไทย) · base 16px, line-height 1.6 (ไทยต้องสูงกว่าปกติ) · scale: 12/14/16/18/20/24/30/36

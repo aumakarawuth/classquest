@@ -15,9 +15,9 @@
 ## Phase 1 Foundation
 | ID | Task | Owner | Status | Acceptance Criteria |
 |---|---|---|---|---|
-| P1-01 | Scaffold Vite+React+TS strict, ESLint, Prettier, Vitest, Playwright (+ CI พื้นฐาน) | claude | review | `npm run lint typecheck test build` ผ่านใน CI |
+| P1-01 | Scaffold Vite+React+TS strict, ESLint, Prettier, Vitest, Playwright (+ CI พื้นฐาน) | claude | done | `npm run lint typecheck test build` ผ่านใน CI |
 | P1-02 | ขยาย CI: gitleaks, cache Playwright, supabase test db | codex | todo | PR แสดง check เขียว |
-| P1-03 | Design tokens + Tailwind + shadcn + light/dark + fonts | claude | todo | toggle theme, contrast AA ตรวจด้วย axe |
+| P1-03 | Design tokens + Tailwind + shadcn + light/dark + fonts | claude | review | toggle theme, contrast AA ตรวจด้วย axe |
 | P1-04 | App shell: layouts 3 role, sidebar/bottom nav, states components | claude | todo | responsive 360/768/1280px, keyboard nav |
 | P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | codex | todo | `supabase db reset` ผ่าน |
 | P1-06 | Google sign-in (Workspace Internal, ADR-0006) + domain restriction + pending approval + role guard routes | codex | todo | อีเมลนอกโดเมนถูกปฏิเสธฝั่ง DB; ผู้ใช้ใหม่ status=pending เข้า dashboard ไม่ได้จนอนุมัติ |
