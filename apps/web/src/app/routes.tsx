@@ -53,6 +53,9 @@ const PrePostReportPage = lazy(() => import('@/features/assessment/pages/PrePost
 
 const ClassroomPage = lazy(() => import('@/features/classroom/pages/ClassroomPage'));
 
+const StudentsPage = lazy(() => import('@/features/roster/pages/StudentsPage'));
+const GradebookPage = lazy(() => import('@/features/roster/pages/GradebookPage'));
+const ProfileSettingsPage = lazy(() => import('@/features/roster/pages/ProfileSettingsPage'));
 const TeacherLabsPage = lazy(() => import('@/features/labs/pages/TeacherLabsPage'));
 const StudentLabsPage = lazy(() => import('@/features/labs/pages/StudentLabsPage'));
 const LabDetailPage = lazy(() => import('@/features/labs/pages/LabDetailPage'));
@@ -117,12 +120,16 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     competency: <MyCompetencyPage />,
     labs: <StudentLabsPage />,
     portfolio: <MyPortfolioPage />,
+    profile: <ProfileSettingsPage title="โปรไฟล์" />,
   },
   teacher: {
     '': <TeacherDashboardPage />,
     analytics: <TeacherDashboardPage />,
     courses: <TeacherCoursesPage />,
     reviews: <ReviewQueuePage />,
+    students: <StudentsPage />,
+    gradebook: <GradebookPage />,
+    settings: <ProfileSettingsPage />,
     competency: <TeacherCompetencyIndexPage />,
     classroom: <ClassroomPage />,
     evidence: <EvidenceCenterPage />,
