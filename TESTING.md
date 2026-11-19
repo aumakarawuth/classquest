@@ -8,6 +8,11 @@
 | E2E | Playwright (`--trace off`) | login (test helper), join course, lesson, quest submit, review, quiz; viewport mobile/tablet/desktop; @axe-core/playwright |
 | Load | k6 (รันเองจาก local/GitHub Actions) | 30 VUs: browse lesson, quiz attempt, submit quest พร้อมกัน 10 นาที |
 
+## วิธีรัน DB tests
+- Local ไม่ใช้ Docker: `supabase/tests/local/run.sh` (ต้องมี postgresql-16 + postgresql-16-pgtap)
+- Supabase CLI: `supabase test db`
+- ไฟล์ทดสอบ: `supabase/tests/database/*.test.sql` (helper `tests.act_as(uuid)` จำลองผู้ใช้)
+
 ## Must-pass security tests
 1. student INSERT xp_transactions → denied  2. student UPDATE user_roles → denied  3. student SELECT quiz_attempts ของคนอื่น → 0 rows  4. student SELECT question_options.is_correct → error  5. review ซ้ำด้วย key เดิม → XP 1 แถว  6. non-member SELECT lessons ของวิชาอื่น → 0 rows
 

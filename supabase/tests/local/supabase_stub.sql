@@ -11,8 +11,14 @@ create table auth.users (
   raw_user_meta_data jsonb default '{}'::jsonb
 );
 create function auth.uid() returns uuid language sql stable as $$
-  select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid
+  select coalesce(
+    nullif(current_setting('request.jwt.claim.sub', true), ''),
+    nullif(current_setting('request.jwt.claims', true), '')::jsonb ->> 'sub'
+  )::uuid
 $$;
 grant execute on function auth.uid() to anon, authenticated;
 grant usage on schema public to anon, authenticated;
 alter default privileges in schema public grant all on tables to anon, authenticated;
+create schema extensions;
+alter database postgres set search_path = "$user", public, extensions; -- mirrors Supabase default
+grant usage on schema extensions to anon, authenticated;

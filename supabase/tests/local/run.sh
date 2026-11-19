@@ -13,4 +13,9 @@ trap '"$bin/pg_ctl" -D "$data" stop -m immediate >/dev/null 2>&1 || true; rm -rf
 psql=(psql -h "$data" -p "$port" -U postgres -d postgres -v ON_ERROR_STOP=1 -q)
 "${psql[@]}" -f "$here/supabase_stub.sql"
 for f in "$root"/migrations/*.sql; do "${psql[@]}" -f "$f"; done
-for t in "$here"/*_test.sql; do "${psql[@]}" -f "$t"; done
+status=0
+for t in "$root"/tests/database/*.test.sql; do
+  echo "# $(basename "$t")"
+  "${psql[@]}" -t -A -f "$t" || status=1
+done
+exit $status
