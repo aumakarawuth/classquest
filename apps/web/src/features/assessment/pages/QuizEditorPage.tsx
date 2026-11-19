@@ -378,6 +378,14 @@ function Editor({
         ) : (
           <span />
         )}
+        {quiz && (
+          <Link
+            to={`/teacher/courses/${courseId}/quizzes/${quiz.id}/results`}
+            className="text-sm text-primary underline"
+          >
+            ดูผลและตรวจข้อเขียน
+          </Link>
+        )}
         <Button type="submit" disabled={!!error || save.isPending}>
           {save.isPending ? 'กำลังบันทึก…' : 'บันทึกแบบทดสอบ'}
         </Button>

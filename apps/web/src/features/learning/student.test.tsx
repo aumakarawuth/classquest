@@ -29,6 +29,10 @@ vi.mock('@/features/gamification/leaderboardApi', async (orig) => ({
   ...(await orig<typeof import('@/features/gamification/leaderboardApi')>()),
   getLeaderboardStatus: vi.fn().mockResolvedValue({ system_enabled: false, course_enabled: false }),
 }));
+vi.mock('@/features/assessment/api', async (orig) => ({
+  ...(await orig<typeof import('@/features/assessment/api')>()),
+  listQuizzes: vi.fn().mockResolvedValue([]),
+}));
 vi.mock('./api', async (orig) => ({
   ...(await orig<typeof import('./api')>()),
   getLesson: vi.fn(),
