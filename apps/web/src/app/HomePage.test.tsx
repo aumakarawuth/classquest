@@ -1,14 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import { axe } from 'vitest-axe';
 import { ThemeProvider } from '@/lib/theme/ThemeProvider';
 import { HomePage } from './HomePage';
 
 const renderPage = () =>
   render(
-    <ThemeProvider>
-      <HomePage />
-    </ThemeProvider>,
+    <MemoryRouter>
+      <ThemeProvider>
+        <HomePage />
+      </ThemeProvider>
+    </MemoryRouter>,
   );
 
 it('renders the app title', () => {

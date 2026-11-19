@@ -1,5 +1,7 @@
 import { Sparkles, Swords, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/common/ThemeToggle';
+import { buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 const stages = [
@@ -42,6 +44,27 @@ export function HomePage() {
             </div>
           </Card>
         ))}
+      </section>
+
+      <section aria-labelledby="shell-preview" className="space-y-3">
+        <h2 id="shell-preview" className="font-semibold">
+          ตัวอย่างโครงหน้า (ก่อนเปิดระบบเข้าสู่ระบบ)
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          ใช้ตรวจ layout ระหว่างพัฒนาเท่านั้น — เมื่อมีระบบเข้าสู่ระบบ (P1-06)
+          ผู้ใช้จะเข้าได้เฉพาะหน้าตามสิทธิ์ที่ผู้ดูแลกำหนด
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Link to="/student" className={buttonVariants()}>
+            นักเรียน
+          </Link>
+          <Link to="/teacher" className={buttonVariants({ variant: 'secondary' })}>
+            ครูผู้สอน
+          </Link>
+          <Link to="/admin" className={buttonVariants({ variant: 'outline' })}>
+            ผู้ดูแลระบบ
+          </Link>
+        </div>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2">
