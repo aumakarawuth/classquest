@@ -43,8 +43,8 @@
 ## Phase 3–8 (สรุป, แตกย่อยเมื่อเริ่ม phase)
 | ID | Task | AC หลัก |
 |---|---|---|
-| P3-01 — **review (claude)** | (ledger + award จาก quest เสร็จใน P2-07) levels editable + level calc view | XP = SUM(ledger), unique constraint ทดสอบ race 30 concurrent |
-| P3-02 | Badges + rules + Achievements page | award idempotent |
+| P3-01 — **done** | (ledger + award จาก quest เสร็จใน P2-07) levels editable + level calc view | XP = SUM(ledger), unique constraint ทดสอบ race 30 concurrent |
+| P3-02 — **review (claude)** | Badges + rules + Achievements page | award idempotent |
 | P3-03 | Skill tree (competency parent) + streak weekly | ไม่หัก XP เมื่อขาด |
 | P3-04 | Leaderboard toggle + opt-out | ไม่มี email/คะแนนสอบใน response |
 | P4-01 | Quiz builder + question bank + random | |

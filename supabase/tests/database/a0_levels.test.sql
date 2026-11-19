@@ -1,5 +1,6 @@
 begin;
 select plan(11);
+update public.badges set active = false; -- isolate level maths from badge bonuses (tested in b0)
 
 select tests.create_user('a0000000-0000-0000-0000-00000000000a', 't@school.test', 'active', 'teacher');
 select tests.create_user('a0000000-0000-0000-0000-00000000000b', 's@school.test', 'active', 'student');
