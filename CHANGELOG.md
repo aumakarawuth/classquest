@@ -3,6 +3,9 @@
 
 ## [Unreleased]
 ### Added
+- P1-06: Google sign-in (Supabase PKCE), AuthProvider + TanStack Query, หน้า Login/Callback/รออนุมัติ/ไม่มีสิทธิ์, RequireArea guard ตาม role จาก DB, ออกจากระบบพร้อมยืนยัน
+### Removed
+- หน้าแรกแบบ "ตัวอย่างโครงหน้า" (ถูกแทนด้วย login)
 - P1-07: pgTAP RLS/permission tests (31 assertions) in `supabase/tests/database`, CI `database` job
 - P1-05: migration core (profiles, user_roles, system_settings + feature flags, courses, course_members, enrollment_codes, audit_logs), RLS baseline, domain restriction trigger, local Postgres test harness
 - P1-04: AppShell (sidebar desktop / bottom nav mobile, skip link) สำหรับ student/teacher/admin, lazy routes, EmptyState/ErrorState/PageSkeleton/ConfirmDialog/Toaster/ComingSoon, route error boundary

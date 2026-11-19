@@ -1,9 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-test('home page loads in Thai', async ({ page }) => {
+test('unauthenticated root goes to Thai login page', async ({ page }) => {
   await page.goto('/');
+  await expect(page).toHaveURL(/\/login$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'th');
-  await expect(page.getByRole('heading', { name: 'ClassQuest' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'เข้าสู่ระบบ' })).toBeVisible();
 });
 
 test('unknown route shows not found page (SPA fallback)', async ({ page }) => {

@@ -2,7 +2,10 @@
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { ComingSoon } from '@/components/common/ComingSoon';
-import { HomePage } from './HomePage';
+import { RequireArea, RootRedirect } from '@/features/auth/guards';
+import { AuthCallbackPage } from '@/features/auth/pages/AuthCallbackPage';
+import { LoginPage } from '@/features/auth/pages/LoginPage';
+import { PendingPage } from '@/features/auth/pages/PendingPage';
 import { AppShell } from './layouts/AppShell';
 import { navAreas, type ShellArea } from './navigation';
 import { NotFoundPage } from './NotFoundPage';
@@ -21,7 +24,11 @@ function areaRoutes(area: ShellArea): RouteObject {
   const nav = navAreas[area];
   return {
     path: nav.basePath,
-    element: <AppShell area={area} />,
+    element: (
+      <RequireArea area={area}>
+        <AppShell area={area} />
+      </RequireArea>
+    ),
     children: nav.items.map((item) => {
       const element =
         area === 'student' && item.path === '' ? (
@@ -38,7 +45,10 @@ export const routes: RouteObject[] = [
   {
     errorElement: <RouteError />,
     children: [
-      { path: '/', element: <HomePage /> },
+      { path: '/', element: <RootRedirect /> },
+      { path: '/login', element: <LoginPage /> },
+      { path: '/auth/callback', element: <AuthCallbackPage /> },
+      { path: '/pending', element: <PendingPage /> },
       areaRoutes('student'),
       areaRoutes('teacher'),
       areaRoutes('admin'),
