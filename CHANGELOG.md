@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P2-08: `supabase/seed.sql` (dev/test เท่านั้น, ปฏิเสธถ้าพบบัญชีจริง): ผู้ดูแล/ครู/นักเรียนสมมติ 30 คน (@example.test), รายวิชา 31910-2012 18 สัปดาห์, บทเรียน 10 บทต่อเนื่อง, Mission 01–09 + Boss Mission (ต่อกันเป็นลำดับ), Rubric Mission 03, รหัส DEVIOT01, งานรอตรวจ 3 ชิ้น; ไม่มี XP/ผลการเรียน; `run.sh --seed` + CI
 - P2-07: rubrics/rubric_criteria/quest_reviews/rubric_results/xp_transactions (append-only, unique ต่อแหล่งที่มา); RPC `save_quest_rubric` (versioning เมื่อเกณฑ์ถูกใช้แล้ว), `review_submission` (idempotency key, rubric ปรับเทียบคะแนนเต็ม, XP ครั้งเดียวต่อภารกิจ, audit); `clone_course` คัดลอกภารกิจ + rubric; หน้า ตรวจงาน (คิว + รายละเอียด), ตัวแก้ไข Rubric, นักเรียนเห็นผลการตรวจและ Feedback
 - P2-06: ครู — รายการภารกิจของรายวิชา, ตัวแก้ไขภารกิจ (ประเภท, หน่วย, ขั้น QUEST, Markdown, จุดประสงค์, ความยาก, คะแนน, XP, กำหนดส่งเวลาไทย, รับงานช้า, วิธีส่ง, ลิงก์ Classroom, จำนวนครั้ง, ภารกิจก่อนหน้า, เผยแพร่, ลบ); นักเรียน — กระดานภารกิจ (ต้องทำ/รอตรวจ/ผ่านแล้ว/ทั้งหมด), รายละเอียดภารกิจ + ส่งงาน (ข้อความ/ลิงก์/ไฟล์ ≤ 2 MB ตรวจก่อนอัปโหลด/ลิงก์ไป Classroom) + ประวัติการส่ง (เปิดไฟล์ด้วย signed URL 5 นาที)
 - P2-05: ตาราง quests (6 ประเภท, ความยาก, คะแนน, XP reward, กำหนดส่ง, วิธีส่ง, จำนวนครั้ง), quest_prerequisites, quest_submissions; RPC `submit_quest` (ตรวจสิทธิ์, วิธีส่ง, https, ไฟล์ของตนเอง, prerequisite, ห้ามส่งซ้ำระหว่างรอตรวจ, จำนวนครั้ง, กำหนดส่ง/ส่งช้า, กัน race); bucket `submissions` (private, 2 MB, PNG/JPEG/WebP/PDF) + storage policies

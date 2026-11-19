@@ -33,8 +33,8 @@
 | P2-04 | Student Roadmap (QUEST stepper) + Lesson Viewer + unlock — **done** | claude | บทเรียนที่ยังล็อกแสดงเงื่อนไข |
 | P2-05 | Quest migration + `submit_quest` RPC + storage bucket — **done** | claude | ไฟล์ > 2MB/MIME อื่นถูกปฏิเสธ; เกิน resubmission ถูกปฏิเสธ |
 | P2-06 | Quest Board/Detail/Editor UI — **done** | claude | 6 ประเภทแสดงต่างกัน, empty/loading/error states |
-| P2-07 | `review_submission` RPC + Review UI + rubric — **review (claude)** | claude | approve ซ้ำไม่ได้ XP ซ้ำ |
-| P2-08 | Seed dev: IoT course + 10 missions + 30 fake students | codex | seed ใช้เฉพาะ local/dev |
+| P2-07 | `review_submission` RPC + Review UI + rubric — **done** | claude | approve ซ้ำไม่ได้ XP ซ้ำ |
+| P2-08 | Seed dev: IoT course + 10 missions + 30 fake students — **review (claude)** | claude | seed ใช้เฉพาะ local/dev |
 
 ### Follow-ups
 - การบันทึก prerequisite ของ quest เป็น delete+insert 2 คำขอ (ไม่ atomic) — ย้ายเป็น RPC ถ้าพบปัญหา
