@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { supabase } from '@/lib/supabase';
+import { touchActivity } from '@/features/analytics/api';
 import { fetchAccount, signInWithGoogle } from './api';
 import { AuthContext, type AuthState } from './AuthContext';
 
@@ -35,6 +36,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     enabled: !!supabase && !!userId,
   });
+
+  const isActive = accountQuery.data?.status === 'active';
+  useEffect(() => {
+    // one "active today" mark per app load (engagement metric; no fine-grained tracking)
+    if (isActive) void touchActivity().catch(() => undefined);
+  }, [isActive, userId]);
 
   const signIn = useCallback(async () => {
     if (!supabase) throw new Error('Supabase is not configured');
