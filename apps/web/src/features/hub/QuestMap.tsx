@@ -21,7 +21,7 @@ function Hex({ node, offset }: { node: PathNode; offset: number }) {
   const size = node.boss ? 'size-24' : 'size-16';
   const tone = {
     done: 'xp-gradient text-white',
-    next: 'bg-primary text-primary-foreground',
+    next: 'bg-highlight text-highlight-foreground',
     open: 'bg-primary/80 text-primary-foreground',
     waiting: 'bg-secondary text-secondary-foreground',
     locked: 'bg-muted text-muted-foreground',
@@ -30,7 +30,7 @@ function Hex({ node, offset }: { node: PathNode; offset: number }) {
   const body = (
     <>
       {node.state === 'next' && (
-        <span className="absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-card px-2 py-1 text-xs font-bold tracking-wide text-primary shadow-md ring-1 ring-primary/40 motion-safe:animate-bounce">
+        <span className="absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-highlight px-2.5 py-1 text-xs font-bold tracking-wide text-highlight-foreground shadow-[0_3px_0_var(--highlight-shade)] motion-safe:animate-bounce">
           START
         </span>
       )}
@@ -40,8 +40,8 @@ function Hex({ node, offset }: { node: PathNode; offset: number }) {
           size,
           tone,
           node.state !== 'locked' && 'group-hover:scale-110 group-focus-visible:scale-110',
-          node.boss && node.state !== 'locked' && 'drop-shadow-[0_0_14px_var(--accent)]',
-          node.state === 'next' && 'drop-shadow-[0_0_12px_var(--primary)]',
+          node.boss && node.state !== 'locked' && 'drop-shadow-[0_0_14px_var(--highlight)]',
+          node.state === 'next' && 'drop-shadow-[0_0_12px_var(--highlight)]',
         )}
         style={{ clipPath: HEX }}
       >
