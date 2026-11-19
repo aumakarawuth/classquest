@@ -6,6 +6,7 @@ import { PageSkeleton } from '@/components/common/PageSkeleton';
 import { useAuth } from '@/features/auth/useAuth';
 import { listMyCourses } from '@/features/courses/api';
 import { CompetencyReport } from '../components/CompetencyReport';
+import { SkillTree } from '../components/SkillTree';
 
 export default function MyCompetencyPage() {
   const { userId } = useAuth();
@@ -17,7 +18,7 @@ export default function MyCompetencyPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">สมรรถนะของฉัน</h1>
+        <h1 className="text-2xl font-bold tracking-tight">สมรรถนะของฉัน (Skill Tree)</h1>
         <p className="text-sm text-muted-foreground">
           ผลการประเมินจากหลักฐานจริง: ภารกิจ Rubric และการประเมินของครู
         </p>
@@ -34,6 +35,7 @@ export default function MyCompetencyPage() {
             <h2 id={`mc-${c.id}`} className="font-semibold">
               {c.code} {c.name}
             </h2>
+            <SkillTree courseId={c.id} userId={userId ?? ''} />
             <CompetencyReport courseId={c.id} userId={userId ?? ''} />
           </section>
         ))

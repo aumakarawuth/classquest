@@ -14,6 +14,7 @@ import { CourseXpCard } from '@/features/gamification/CourseXpCard';
 import { CourseQuizzes } from '@/features/assessment/components/CourseQuizzes';
 import { ClassroomLink } from '@/features/classroom/ClassroomLink';
 import { CourseSurveys } from '@/features/evidence/components/CourseSurveys';
+import { LearningWeeksCard } from '@/features/gamification/LearningWeeksCard';
 import { LeaderboardCard } from '@/features/gamification/LeaderboardCard';
 import { QuestStageProgress } from '../components/QuestStageProgress';
 import { questStageLabels } from '../resources';
@@ -80,7 +81,8 @@ export default function StudentCoursePage() {
           </div>
         </Card>
         <CourseXpCard courseId={courseId} />
-        <Card className="space-y-3 lg:col-span-3">
+        <LearningWeeksCard courseId={courseId} />
+        <Card className="space-y-3 lg:col-span-2">
           <h2 className="font-semibold">เส้นทาง QUEST</h2>
           <QuestStageProgress stages={r.stages} />
         </Card>
