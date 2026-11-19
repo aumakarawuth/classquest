@@ -15,10 +15,31 @@ const StudentDashboard = lazy(() => import('./pages/StudentDashboard'));
 const UsersPage = lazy(() => import('@/features/admin/pages/UsersPage'));
 const RolesPage = lazy(() => import('@/features/admin/pages/RolesPage'));
 const AuditLogPage = lazy(() => import('@/features/admin/pages/AuditLogPage'));
+const TeacherCoursesPage = lazy(() => import('@/features/courses/pages/TeacherCoursesPage'));
+const CourseFormPage = lazy(() => import('@/features/courses/pages/CourseFormPage'));
+const TeacherCourseDetailPage = lazy(
+  () => import('@/features/courses/pages/TeacherCourseDetailPage'),
+);
+const StudentCoursesPage = lazy(() => import('@/features/courses/pages/StudentCoursesPage'));
+
+/** Detail routes that are not menu items. */
+const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
+  teacher: [
+    { path: 'courses/new', element: <CourseFormPage /> },
+    { path: 'courses/:courseId', element: <TeacherCourseDetailPage /> },
+  ],
+  student: [
+    {
+      path: 'courses/:courseId',
+      element: <ComingSoon title="รายละเอียดรายวิชา" phase="P2-04 (เส้นทางการเรียนและบทเรียน)" />,
+    },
+  ],
+};
 
 /** Pages that are implemented; everything else renders an honest ComingSoon. */
 const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
-  student: { '': <StudentDashboard /> },
+  student: { '': <StudentDashboard />, courses: <StudentCoursesPage /> },
+  teacher: { courses: <TeacherCoursesPage /> },
   admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },
 };
 
@@ -38,12 +59,15 @@ function areaRoutes(area: ShellArea): RouteObject {
         <AppShell area={area} />
       </RequireArea>
     ),
-    children: nav.items.map((item) => {
-      const element = implemented[area]?.[item.path] ?? (
-        <ComingSoon title={item.label} phase={plannedPhase[area]} />
-      );
-      return item.path === '' ? { index: true, element } : { path: item.path, element };
-    }),
+    children: [
+      ...nav.items.map((item): RouteObject => {
+        const element = implemented[area]?.[item.path] ?? (
+          <ComingSoon title={item.label} phase={plannedPhase[area]} />
+        );
+        return item.path === '' ? { index: true, element } : { path: item.path, element };
+      }),
+      ...(extraRoutes[area] ?? []),
+    ],
   };
 }
 

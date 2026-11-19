@@ -7,8 +7,9 @@
 | `admin_set_user_status(_user_id, _status)` | admin | | pending/active/suspended, idempotent, ห้ามระงับตัวเอง, audit |
 | `admin_set_user_role(_user_id, _role, _grant)` | admin | | idempotent, ห้ามถอน admin ของตัวเอง, audit เฉพาะเมื่อเปลี่ยนจริง |
 | `private.bootstrap_admin(email)` | SQL editor เท่านั้น | | ตั้ง admin คนแรก (ใช้ได้เมื่อยังไม่มี admin) |
-| `join_course_by_code(code)` | student | text | insert course_members, uses++ |
-| `clone_course(course_id, term, year)` | teacher | | คัดลอก units/lessons/quests/quizzes/competencies (ไม่คัดลอกข้อมูลนักเรียน) |
+| `create_enrollment_code(_course_id, _expires_at, _max_uses)` | course teacher | | สร้างรหัส 8 ตัวแบบสุ่มฝั่ง server (ไม่มี 0/O/1/I) |
+| `join_course_by_code(_code)` | student | text | ตรวจ active/หมดอายุ/จำนวนครั้ง/archived; เข้าซ้ำ idempotent ไม่นับครั้ง |
+| `clone_course(_source_id, _term, _academic_year, _classroom)` | course teacher | | คัดลอก units/lessons/resources + remap prerequisite เป็น draft (ไม่คัดลอกนักเรียน); quests/quizzes/competencies จะเพิ่มเมื่อมีตาราง |
 | `complete_lesson(lesson_id)` | student | | ตรวจ unlock rule, progress, XP (idempotent) |
 | `submit_quest(quest_id, text, url, storage_path)` | student | | ตรวจ prerequisite, due, resubmission limit |
 | `review_submission(submission_id, decision, score, rubric, feedback, idempotency_key)` | teacher | | review + rubric + competency + XP + badge |
