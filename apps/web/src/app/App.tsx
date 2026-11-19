@@ -1,12 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomePage } from './HomePage';
-import { NotFoundPage } from './NotFoundPage';
+import { Toaster } from '@/components/common/Toaster';
+import { routes } from './routes';
 
-const router = createBrowserRouter([
-  { path: '/', element: <HomePage /> },
-  { path: '*', element: <NotFoundPage /> },
-]);
+const router = createBrowserRouter(routes);
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster />
+    </>
+  );
 }
