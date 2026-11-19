@@ -15,8 +15,8 @@
 ## Phase 1 Foundation
 | ID | Task | Owner | Status | Acceptance Criteria |
 |---|---|---|---|---|
-| P1-01 | Scaffold Vite+React+TS strict, ESLint, Prettier, Vitest, Playwright | codex | todo | `npm run lint typecheck test build` ผ่านใน CI |
-| P1-02 | GitHub Actions CI (lint/type/test/build, gitleaks) | codex | todo | PR แสดง check เขียว |
+| P1-01 | Scaffold Vite+React+TS strict, ESLint, Prettier, Vitest, Playwright (+ CI พื้นฐาน) | claude | review | `npm run lint typecheck test build` ผ่านใน CI |
+| P1-02 | ขยาย CI: gitleaks, cache Playwright, supabase test db | codex | todo | PR แสดง check เขียว |
 | P1-03 | Design tokens + Tailwind + shadcn + light/dark + fonts | claude | todo | toggle theme, contrast AA ตรวจด้วย axe |
 | P1-04 | App shell: layouts 3 role, sidebar/bottom nav, states components | claude | todo | responsive 360/768/1280px, keyboard nav |
 | P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | codex | todo | `supabase db reset` ผ่าน |

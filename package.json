@@ -1,0 +1,14 @@
+{
+  "name": "classquest",
+  "private": true,
+  "workspaces": ["apps/web"],
+  "scripts": {
+    "dev": "npm -w @classquest/web run dev",
+    "lint": "npm -w @classquest/web run lint",
+    "typecheck": "npm -w @classquest/web run typecheck",
+    "test": "npm -w @classquest/web run test",
+    "test:e2e": "npm -w @classquest/web run test:e2e",
+    "build": "npm -w @classquest/web run build",
+    "format:check": "npm -w @classquest/web run format:check"
+  }
+}
