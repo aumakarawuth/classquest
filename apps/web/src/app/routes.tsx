@@ -45,6 +45,10 @@ const TeacherCompetencyIndexPage = lazy(
 const QuizListPage = lazy(() => import('@/features/assessment/pages/QuizListPage'));
 const QuizEditorPage = lazy(() => import('@/features/assessment/pages/QuizEditorPage'));
 const QuestionBankPage = lazy(() => import('@/features/assessment/pages/QuestionBankPage'));
+const QuizResultsPage = lazy(() => import('@/features/assessment/pages/QuizResultsPage'));
+const QuizIntroPage = lazy(() => import('@/features/assessment/pages/QuizIntroPage'));
+const TakeQuizPage = lazy(() => import('@/features/assessment/pages/TakeQuizPage'));
+const AttemptResultPage = lazy(() => import('@/features/assessment/pages/AttemptResultPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -64,11 +68,15 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/quizzes', element: <QuizListPage /> },
     { path: 'courses/:courseId/quizzes/:quizId', element: <QuizEditorPage /> },
     { path: 'courses/:courseId/question-bank', element: <QuestionBankPage /> },
+    { path: 'courses/:courseId/quizzes/:quizId/results', element: <QuizResultsPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
     { path: 'courses/:courseId/lessons/:lessonId', element: <LessonViewerPage /> },
     { path: 'quests/:questId', element: <QuestDetailPage /> },
+    { path: 'quizzes/:quizId', element: <QuizIntroPage /> },
+    { path: 'attempts/:attemptId', element: <TakeQuizPage /> },
+    { path: 'attempts/:attemptId/result', element: <AttemptResultPage /> },
   ],
 };
 
