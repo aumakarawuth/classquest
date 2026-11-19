@@ -112,7 +112,8 @@ it('shows real metrics, “–” for missing data and the support list', async 
   );
   expect(await screen.findByText('50%')).toBeInTheDocument();
   expect(api.getDashboard).toHaveBeenCalledWith('c1', null, null);
-  expect(screen.getByText('ไม่ได้เข้าเรียน 7 วัน')).toBeInTheDocument();
+  expect(screen.getAllByText('ไม่ได้เข้าเรียน 7 วัน').length).toBeGreaterThan(0);
+  expect(screen.getByRole('img', { name: /ต้องช่วยเหลือ 1 คน/ })).toBeInTheDocument();
   expect(screen.getByText('– → –')).toBeInTheDocument();
   expect(screen.getByRole('rowheader', { name: /นักเรียน ก/ })).toBeInTheDocument();
   expect((await axe(container)).violations).toEqual([]);

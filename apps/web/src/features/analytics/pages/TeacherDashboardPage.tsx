@@ -12,6 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import { useAuth } from '@/features/auth/useAuth';
 import { listMyCourses } from '@/features/courses/api';
 import { getBuilder } from '@/features/learning/api';
+import { ClassHealth } from '../ClassHealth';
 import { flagLabels, getDashboard, type Dashboard } from '../api';
 
 const periods = [
@@ -221,6 +222,7 @@ function DashboardBody({ d, courseId }: { d: Dashboard; courseId: string }) {
           sub="ดูรายชื่อด้านล่าง"
         />
       </div>
+      <ClassHealth d={d} courseId={courseId} />
       <div className="flex flex-wrap gap-2">
         <Link to="/teacher/reviews" className={buttonVariants({ variant: 'outline', size: 'sm' })}>
           ไปตรวจงาน
