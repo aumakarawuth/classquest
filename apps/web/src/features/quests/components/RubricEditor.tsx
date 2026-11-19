@@ -5,15 +5,28 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { inputClass } from '@/components/ui/field-utils';
+import { listCompetencies, type Competency } from '@/features/competency/api';
 import { getRubricCriteria, saveQuestRubric, type CriterionInput } from '../reviewApi';
 
 /** Criteria editor for one quest. Saving replaces the criteria atomically on the server. */
-export function RubricEditor({ questId, rubricId }: { questId: string; rubricId: string | null }) {
+export function RubricEditor({
+  questId,
+  rubricId,
+  courseId,
+}: {
+  questId: string;
+  rubricId: string | null;
+  courseId: string;
+}) {
   const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: ['rubric', rubricId],
     queryFn: () => getRubricCriteria(rubricId ?? ''),
     enabled: !!rubricId,
+  });
+  const competencies = useQuery({
+    queryKey: ['competency', 'list', courseId],
+    queryFn: () => listCompetencies(courseId),
   });
   if (rubricId && query.isPending)
     return (
@@ -26,6 +39,7 @@ export function RubricEditor({ questId, rubricId }: { questId: string; rubricId:
       name: c.name,
       description: c.description,
       max_points: c.max_points,
+      competency_id: c.competency_id,
     })) ?? [];
   return (
     <RubricForm
@@ -33,6 +47,7 @@ export function RubricEditor({ questId, rubricId }: { questId: string; rubricId:
       initial={initial}
       onSaved={() => void queryClient.invalidateQueries({ queryKey: ['quests'] })}
       questId={questId}
+      competencies={competencies.data ?? []}
     />
   );
 }
@@ -41,10 +56,12 @@ function RubricForm({
   questId,
   initial,
   onSaved,
+  competencies,
 }: {
   questId: string;
   initial: CriterionInput[];
   onSaved: () => void;
+  competencies: Competency[];
 }) {
   const [rows, setRows] = useState<CriterionInput[]>(initial);
   const total = rows.reduce(
@@ -106,6 +123,26 @@ function RubricForm({
                 onChange={(e) => update(i, { description: e.target.value })}
                 className={inputClass}
               />
+              {competencies.length > 0 && (
+                <>
+                  <label className="sr-only" htmlFor={`crit-comp-${i}`}>
+                    สมรรถนะของเกณฑ์ที่ {i + 1}
+                  </label>
+                  <select
+                    id={`crit-comp-${i}`}
+                    value={r.competency_id ?? ''}
+                    className={inputClass}
+                    onChange={(e) => update(i, { competency_id: e.target.value || null })}
+                  >
+                    <option value="">ไม่ผูกสมรรถนะ</option>
+                    {competencies.map((k) => (
+                      <option key={k.id} value={k.id}>
+                        {k.code} {k.name}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              )}
             </div>
             <div>
               <label className="mb-1 block text-xs text-muted-foreground" htmlFor={`crit-max-${i}`}>
@@ -140,7 +177,12 @@ function RubricForm({
           variant="outline"
           size="sm"
           disabled={rows.length >= 20}
-          onClick={() => setRows((prev) => [...prev, { name: '', description: '', max_points: 4 }])}
+          onClick={() =>
+            setRows((prev) => [
+              ...prev,
+              { name: '', description: '', max_points: 4, competency_id: null },
+            ])
+          }
         >
           <Plus aria-hidden />
           เพิ่มเกณฑ์

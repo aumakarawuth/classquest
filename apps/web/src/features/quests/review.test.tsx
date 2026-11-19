@@ -7,6 +7,10 @@ import { RubricEditor } from './components/RubricEditor';
 import ReviewDetailPage from './pages/ReviewDetailPage';
 import * as reviewApi from './reviewApi';
 
+vi.mock('@/features/competency/api', async (orig) => ({
+  ...(await orig<typeof import('@/features/competency/api')>()),
+  listCompetencies: vi.fn().mockResolvedValue([]),
+}));
 vi.mock('./reviewApi', async (orig) => ({
   ...(await orig<typeof import('./reviewApi')>()),
   getReviewSubmission: vi.fn(),
@@ -62,8 +66,22 @@ beforeEach(() => vi.clearAllMocks());
 it('approves with rubric points and a stable idempotency key across retries', async () => {
   vi.mocked(reviewApi.getReviewSubmission).mockResolvedValue(
     detail([
-      { id: 'k1', position: 1, name: 'วงจรถูกต้อง', description: '', max_points: 4 },
-      { id: 'k2', position: 2, name: 'โค้ดทำงาน', description: '', max_points: 4 },
+      {
+        id: 'k1',
+        position: 1,
+        name: 'วงจรถูกต้อง',
+        description: '',
+        max_points: 4,
+        competency_id: null,
+      },
+      {
+        id: 'k2',
+        position: 2,
+        name: 'โค้ดทำงาน',
+        description: '',
+        max_points: 4,
+        competency_id: null,
+      },
     ]),
   );
   vi.mocked(reviewApi.reviewSubmission)
@@ -114,13 +132,13 @@ it('requests revision with feedback and direct score when no rubric', async () =
 
 it('rubric editor saves criteria and blocks invalid rows', async () => {
   vi.mocked(reviewApi.saveQuestRubric).mockResolvedValue();
-  const { container } = renderWith(<RubricEditor questId="q1" rubricId={null} />);
+  const { container } = renderWith(<RubricEditor questId="q1" rubricId={null} courseId="c1" />);
   await userEvent.click(screen.getByRole('button', { name: 'เพิ่มเกณฑ์' }));
   expect(screen.getByRole('button', { name: 'บันทึกเกณฑ์' })).toBeDisabled();
   await userEvent.type(screen.getByLabelText('ชื่อเกณฑ์ที่ 1'), 'วงจรถูกต้อง');
   await userEvent.click(screen.getByRole('button', { name: 'บันทึกเกณฑ์' }));
   expect(reviewApi.saveQuestRubric).toHaveBeenCalledWith('q1', [
-    { name: 'วงจรถูกต้อง', description: '', max_points: 4 },
+    { name: 'วงจรถูกต้อง', description: '', max_points: 4, competency_id: null },
   ]);
   expect((await axe(container)).violations).toEqual([]);
 });
