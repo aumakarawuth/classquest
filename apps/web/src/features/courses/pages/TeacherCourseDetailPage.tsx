@@ -180,6 +180,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             แบบทดสอบ
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/labs`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            Virtual Lab
+          </Link>
         </Card>
       </div>
     </div>
