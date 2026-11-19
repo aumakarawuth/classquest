@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Award, Flame, Hourglass, Star, Swords } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EmptyState } from '@/components/common/EmptyState';
 import { ErrorState } from '@/components/common/ErrorState';
@@ -16,6 +16,8 @@ import { questStateLabels } from '@/features/quests/model';
 import { useStudentQuests } from '@/features/quests/useStudentQuests';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { Celebration } from './Celebration';
+import { diffRewards, loadSnapshot, saveSnapshot, type RewardDiff } from './celebration';
 import { buildPath, formatDue, type HubQuest } from './model';
 import { QuestMap } from './QuestMap';
 
@@ -124,6 +126,19 @@ function CourseHub({ courseId }: { courseId: string }) {
     queryFn: () => listMyBadges(userId ?? ''),
   });
 
+  const [celebrate, setCelebrate] = useState<RewardDiff | null>(null);
+  useEffect(() => {
+    if (!userId || !progress.data || !badges.data) return;
+    const cur = {
+      xp: progress.data.xp,
+      level: progress.data.level ?? 1,
+      badgeIds: badges.data.filter((b) => b.course_id === courseId).map((b) => b.id),
+    };
+    const diff = diffRewards(loadSnapshot(userId, courseId), cur);
+    saveSnapshot(userId, courseId, cur);
+    if (diff) queueMicrotask(() => setCelebrate(diff));
+  }, [userId, courseId, progress.data, badges.data]);
+
   const courseQuests = useMemo(
     () => (quests.data ?? []).filter((r) => r.quest.course_id === courseId),
     [quests.data, courseId],
@@ -163,6 +178,7 @@ function CourseHub({ courseId }: { courseId: string }) {
 
   return (
     <>
+      <Celebration diff={celebrate} onClose={() => setCelebrate(null)} />
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="สถานะผู้เล่น" role="group">
         <Stat
           icon={Flame}
