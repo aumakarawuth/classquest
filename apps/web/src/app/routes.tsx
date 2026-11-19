@@ -32,6 +32,8 @@ const QuestDetailPage = lazy(() => import('@/features/quests/pages/QuestDetailPa
 const ReviewQueuePage = lazy(() => import('@/features/quests/pages/ReviewQueuePage'));
 const ReviewDetailPage = lazy(() => import('@/features/quests/pages/ReviewDetailPage'));
 const CourseLevelsPage = lazy(() => import('@/features/gamification/pages/CourseLevelsPage'));
+const CourseBadgesPage = lazy(() => import('@/features/gamification/pages/CourseBadgesPage'));
+const AchievementsPage = lazy(() => import('@/features/gamification/pages/AchievementsPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -44,6 +46,7 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/quests/:questId', element: <QuestEditorPage /> },
     { path: 'reviews/:submissionId', element: <ReviewDetailPage /> },
     { path: 'courses/:courseId/levels', element: <CourseLevelsPage /> },
+    { path: 'courses/:courseId/badges', element: <CourseBadgesPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
@@ -58,6 +61,7 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     '': <StudentDashboard />,
     courses: <StudentCoursesPage />,
     quests: <QuestBoardPage />,
+    achievements: <AchievementsPage />,
   },
   teacher: { courses: <TeacherCoursesPage />, reviews: <ReviewQueuePage /> },
   admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },

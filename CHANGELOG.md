@@ -3,6 +3,9 @@
 
 ## [Unreleased]
 ### Added
+- P3-02: `badges` (ระบบ 5 + รายวิชา; กฎ lessons_completed/quests_approved/boss_approved/level_reached หรือมอบเอง; XP โบนัส), `user_badges` (unique, เขียนผ่าน server เท่านั้น); ประเมินกฎอัตโนมัติทุกครั้งที่ได้ XP (trigger, idempotent), RPC `award_badge` (audit); หน้า ความสำเร็จ (นักเรียน) และ Badge ของรายวิชา (สร้าง/ปิดใช้งาน/มอบ)
+### Changed
+- CI: retry การติดตั้ง apt/Playwright
 - P3-01: `level_definitions` (เลเวลมาตรฐาน 10 ขั้น + override รายวิชา), RPC `my_course_progress` (XP รวมจาก ledger + เลเวล), `save_course_levels` (ตรวจ 0/เพิ่มขึ้น, audit), XP เมื่อเรียนบทเรียนจบ (ตั้งค่า `xp.lesson_complete`, ครั้งเดียวต่อบท); หน้าเลเวลและ XP ของครู, การ์ด XP/เลเวลในหน้ารายวิชาของนักเรียน
 - P2-08: `supabase/seed.sql` (dev/test เท่านั้น, ปฏิเสธถ้าพบบัญชีจริง): ผู้ดูแล/ครู/นักเรียนสมมติ 30 คน (@example.test), รายวิชา 31910-2012 18 สัปดาห์, บทเรียน 10 บทต่อเนื่อง, Mission 01–09 + Boss Mission (ต่อกันเป็นลำดับ), Rubric Mission 03, รหัส DEVIOT01, งานรอตรวจ 3 ชิ้น; ไม่มี XP/ผลการเรียน; `run.sh --seed` + CI
 - P2-07: rubrics/rubric_criteria/quest_reviews/rubric_results/xp_transactions (append-only, unique ต่อแหล่งที่มา); RPC `save_quest_rubric` (versioning เมื่อเกณฑ์ถูกใช้แล้ว), `review_submission` (idempotency key, rubric ปรับเทียบคะแนนเต็ม, XP ครั้งเดียวต่อภารกิจ, audit); `clone_course` คัดลอกภารกิจ + rubric; หน้า ตรวจงาน (คิว + รายละเอียด), ตัวแก้ไข Rubric, นักเรียนเห็นผลการตรวจและ Feedback

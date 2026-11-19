@@ -160,6 +160,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             เลเวลและ XP
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/badges`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            Badge
+          </Link>
         </Card>
       </div>
     </div>

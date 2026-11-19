@@ -55,10 +55,10 @@ select is((public.review_submission((select id from t_sub2), 'approved', null, '
     jsonb_build_object('criterion_id', (select id from t_crit where position = 1), 'points', 4),
     jsonb_build_object('criterion_id', (select id from t_crit where position = 2), 'points', 3)), 'approve-key-01')).score,
   17.50::numeric, 'rubric 7/8 scaled to 17.5/20');
-select is((select sum(amount)::int from public.xp_transactions), 150, 'XP awarded once on approval');
+select is((select sum(amount)::int from public.xp_transactions where source_type = 'quest'), 150, 'quest XP awarded once on approval');
 select lives_ok($$ select public.review_submission((select id from t_sub2), 'approved', null, 'ดีมาก', '[]', 'approve-key-01') $$,
   'retry with same idempotency key is a no-op');
-select is((select count(*)::int from public.xp_transactions), 1, 'retry does not duplicate XP');
+select is((select count(*)::int from public.xp_transactions where source_type = 'quest'), 1, 'retry does not duplicate XP');
 
 -- plain quest: score required and bounded
 select tests.act_as('90000000-0000-0000-0000-00000000000b');
