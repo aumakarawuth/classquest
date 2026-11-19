@@ -33,6 +33,10 @@ vi.mock('@/features/assessment/api', async (orig) => ({
   ...(await orig<typeof import('@/features/assessment/api')>()),
   listQuizzes: vi.fn().mockResolvedValue([]),
 }));
+vi.mock('@/features/classroom/api', async (orig) => ({
+  ...(await orig<typeof import('@/features/classroom/api')>()),
+  getConnection: vi.fn().mockResolvedValue('https://classroom.google.com/c/abc'),
+}));
 vi.mock('./api', async (orig) => ({
   ...(await orig<typeof import('./api')>()),
   getLesson: vi.fn(),
@@ -126,6 +130,10 @@ it('roadmap shows progress, next lesson and locked lessons', async () => {
   const { container } = renderAt('/student/courses/c1');
   expect(await screen.findByRole('link', { name: /เริ่มเรียน: IoT คืออะไร/ })).toBeInTheDocument();
   expect(screen.getByText(/ล็อกอยู่ — เรียน “IoT คืออะไร” ก่อน/)).toBeInTheDocument();
+  expect(await screen.findByRole('link', { name: 'เปิด Google Classroom' })).toHaveAttribute(
+    'href',
+    'https://classroom.google.com/c/abc',
+  );
   expect(screen.queryByRole('link', { name: /Hello Arduino/ })).not.toBeInTheDocument();
   expect(await screen.findByRole('progressbar', { name: 'ความคืบหน้าสู่เลเวล 3' })).toHaveAttribute(
     'aria-valuenow',

@@ -51,6 +51,8 @@ const TakeQuizPage = lazy(() => import('@/features/assessment/pages/TakeQuizPage
 const AttemptResultPage = lazy(() => import('@/features/assessment/pages/AttemptResultPage'));
 const PrePostReportPage = lazy(() => import('@/features/assessment/pages/PrePostReportPage'));
 
+const ClassroomPage = lazy(() => import('@/features/classroom/pages/ClassroomPage'));
+
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
@@ -95,6 +97,7 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     courses: <TeacherCoursesPage />,
     reviews: <ReviewQueuePage />,
     competency: <TeacherCompetencyIndexPage />,
+    classroom: <ClassroomPage />,
   },
   admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },
 };
