@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- P2-03: Course Builder (แก้ชื่อ/เผยแพร่หน่วย, เพิ่ม/ลบ/เรียงลำดับ/เผยแพร่บทเรียน), Lesson Editor (Markdown + ดูตัวอย่าง, ขั้น QUEST, บทเรียนก่อนหน้า, เวลา), สื่อ 11 ประเภท (https + จำกัดโดเมนตามประเภท, YouTube แบบ nocookie), RPC `reorder_lessons`/`reorder_resources`, Markdown renderer ที่ไม่ render HTML
 - P2-01/P2-02: learning_units/lessons/lesson_resources/lesson_progress + RLS (นักเรียนเห็นเฉพาะเนื้อหาที่เผยแพร่), สร้าง 18 หน่วยอัตโนมัติ, RPC `create_enrollment_code`/`join_course_by_code`/`clone_course`; หน้า จัดการรายวิชา/สร้างรายวิชา/รายละเอียดรายวิชา (สถานะ, รหัสเข้าร่วม, คัดลอก) และ รายวิชาของฉัน (เข้าร่วมด้วยรหัส)
 - P1-08: RPC `admin_set_user_status`/`admin_set_user_role` (audited, idempotent, กัน self-lockout), `private.bootstrap_admin`, หน้า Admin › ผู้ใช้งาน (อนุมัติ/สิทธิ์/ระงับ, ค้นหา, แบ่งหน้า), สิทธิ์การใช้งาน, Audit Log; pgTAP +14
 - P1-06: Google sign-in (Supabase PKCE), AuthProvider + TanStack Query, หน้า Login/Callback/รออนุมัติ/ไม่มีสิทธิ์, RequireArea guard ตาม role จาก DB, ออกจากระบบพร้อมยืนยัน

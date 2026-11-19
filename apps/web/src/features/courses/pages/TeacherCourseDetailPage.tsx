@@ -7,7 +7,7 @@ import { ConfirmDialog } from '@/components/common/ConfirmDialog';
 import { EmptyState } from '@/components/common/EmptyState';
 import { ErrorState } from '@/components/common/ErrorState';
 import { PageSkeleton } from '@/components/common/PageSkeleton';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { formatThaiDateTime } from '@/lib/datetime';
 import {
@@ -142,9 +142,12 @@ function CourseDetail({ course }: { course: Course }) {
             หน่วยการเรียนรู้
           </h2>
           <p className="text-3xl font-bold tabular-nums">{units.data ?? '–'}</p>
-          <p className="text-sm text-muted-foreground">
-            ตัวแก้ไขหน่วยการเรียนรู้และบทเรียน (Course Builder) จะเปิดใช้งานใน P2-03
-          </p>
+          <Link
+            to={`/teacher/courses/${course.id}/builder`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            ออกแบบหน่วยและบทเรียน
+          </Link>
         </Card>
       </div>
     </div>
