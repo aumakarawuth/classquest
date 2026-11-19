@@ -41,7 +41,11 @@ const auth: AuthState = {
   refetchAccount: vi.fn(),
 };
 
-const quest = (id: string, title: string, extra: Partial<api.Quest> = {}) => ({
+const quest = (
+  id: string,
+  title: string,
+  extra: Partial<api.Quest> = {},
+): api.Quest & { courses: { code: string; name: string } } => ({
   id,
   course_id: 'c1',
   unit_id: null,
@@ -60,6 +64,7 @@ const quest = (id: string, title: string, extra: Partial<api.Quest> = {}) => ({
   max_attempts: 2,
   position: 1,
   published: true,
+  rubric_id: null,
   quest_prerequisites: [],
   courses: { code: '31910-2012', name: 'IoT' },
   ...extra,

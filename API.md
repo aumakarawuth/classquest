@@ -12,7 +12,8 @@
 | `clone_course(_source_id, _term, _academic_year, _classroom)` | course teacher | | คัดลอก units/lessons/resources + remap prerequisite เป็น draft (ไม่คัดลอกนักเรียน); quests/quizzes/competencies จะเพิ่มเมื่อมีตาราง |
 | `complete_lesson(lesson_id)` | student | | ตรวจ unlock rule, progress, XP (idempotent) |
 | `submit_quest(_quest_id, _text, _url, _storage_path)` | student | | ตรวจ published/สมาชิก, วิธีส่งที่อนุญาต, https, ไฟล์ต้องเป็นของตนใน `{course}/{user}/`, prerequisite approved, ห้ามส่งระหว่างรอตรวจ, `max_attempts`, กำหนดส่ง (`allow_late` → `is_late`) |
-| `review_submission(submission_id, decision, score, rubric, feedback, idempotency_key)` | teacher | | review + rubric + competency + XP + badge |
+| `save_quest_rubric(_quest_id, _criteria jsonb)` | course teacher | | แทนเกณฑ์ทั้งหมด; ถ้าเกณฑ์เดิมถูกใช้ตรวจแล้วสร้างฉบับใหม่ |
+| `review_submission(_submission_id, _decision, _score, _feedback, _rubric, _idempotency_key)` | course teacher | | ตรวจได้ครั้งเดียวต่อ submission; rubric ต้องครบทุกเกณฑ์และไม่เกินคะแนนเต็ม → ปรับเทียบ max_score; approved → XP `quest_approved` ครั้งเดียวต่อภารกิจ; key ซ้ำ = no-op; (competency/badge เพิ่มใน Phase 3–4) |
 | `start_quiz_attempt(quiz_id)` | student | | สุ่มคำถาม, คืนคำถามไม่มีเฉลย |
 | `submit_quiz_attempt(attempt_id, answers)` | student | jsonb | auto-grade, XP |
 | `grade_short_answer(answer_id, points, feedback)` | teacher | | |

@@ -33,12 +33,13 @@ const questSchema = z.object({
   max_attempts: z.number(),
   position: z.number(),
   published: z.boolean(),
+  rubric_id: z.string().nullable(),
   quest_prerequisites: z.array(z.object({ required_quest_id: z.string() })),
 });
 export type Quest = z.infer<typeof questSchema>;
 
 const QUEST_COLUMNS =
-  'id, course_id, unit_id, type, title, description_md, objectives, quest_stage, difficulty, max_score, xp_reward, due_at, allow_late, submit_modes, classroom_url, max_attempts, position, published, quest_prerequisites!quest_prerequisites_quest_id_fkey(required_quest_id)';
+  'id, course_id, unit_id, type, title, description_md, objectives, quest_stage, difficulty, max_score, xp_reward, due_at, allow_late, submit_modes, classroom_url, max_attempts, position, published, rubric_id, quest_prerequisites!quest_prerequisites_quest_id_fkey(required_quest_id)';
 
 export async function listCourseQuests(courseId: string): Promise<Quest[]> {
   const { data, error } = await client()

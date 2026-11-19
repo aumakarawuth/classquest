@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, ExternalLink, FileUp, Lock, Send } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -27,6 +27,7 @@ import {
   validateSubmissionFile,
   type QuestState,
 } from '../model';
+import { listReviews, type Review } from '../reviewApi';
 import { useStudentQuests } from '../useStudentQuests';
 
 const statusLabels = { submitted: 'รอตรวจ', needs_revision: 'ต้องแก้ไข', approved: 'ผ่าน' } as const;
@@ -132,11 +133,7 @@ export default function QuestDetailPage() {
           <h2 id="history-heading" className="font-semibold">
             ประวัติการส่งงาน
           </h2>
-          <ol className="space-y-2">
-            {history.map((s) => (
-              <HistoryItem key={s.id} submission={s} />
-            ))}
-          </ol>
+          <History history={history} />
         </section>
       )}
     </article>
@@ -269,7 +266,25 @@ function SubmitForm({ quest, state }: { quest: Quest; state: QuestState }) {
   );
 }
 
-function HistoryItem({ submission: s }: { submission: Submission }) {
+function History({ history }: { history: Submission[] }) {
+  const reviews = useQuery({
+    queryKey: ['quests', 'my-reviews', history.map((h) => h.id).join(',')],
+    queryFn: () => listReviews(history.map((h) => h.id)),
+  });
+  return (
+    <ol className="space-y-2">
+      {history.map((s) => (
+        <HistoryItem
+          key={s.id}
+          submission={s}
+          review={reviews.data?.find((r) => r.submission_id === s.id)}
+        />
+      ))}
+    </ol>
+  );
+}
+
+function HistoryItem({ submission: s, review }: { submission: Submission; review?: Review }) {
   const open = useMutation({
     mutationFn: () => signedFileUrl(s.storage_path ?? ''),
     onSuccess: (href) => window.open(href, '_blank', 'noopener'),
@@ -307,6 +322,15 @@ function HistoryItem({ submission: s }: { submission: Submission }) {
           >
             เปิดไฟล์ที่ส่ง
           </Button>
+        )}
+        {review && (
+          <div className="rounded-lg bg-muted p-3">
+            <p className="font-medium">
+              ผลการตรวจ: {review.decision === 'approved' ? 'ผ่าน' : 'ต้องแก้ไข'}
+              {review.score !== null && ` · คะแนน ${review.score}`}
+            </p>
+            {review.feedback && <p className="whitespace-pre-line">{review.feedback}</p>}
+          </div>
         )}
       </Card>
     </li>

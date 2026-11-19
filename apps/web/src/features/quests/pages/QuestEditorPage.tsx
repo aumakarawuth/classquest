@@ -14,6 +14,7 @@ import { Field } from '@/components/ui/field';
 import { fieldA11y, inputClass } from '@/components/ui/field-utils';
 import { getBuilder } from '@/features/learning/api';
 import { questStageLabels, questStages } from '@/features/learning/resources';
+import { RubricEditor } from '../components/RubricEditor';
 import {
   deleteQuest,
   getQuest,
@@ -65,6 +66,13 @@ export default function QuestEditorPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       {back}
       <QuestForm courseId={courseId} quest={isNew ? null : (quest.data ?? null)} />
+      {!isNew && quest.data ? (
+        <RubricEditor questId={quest.data.id} rubricId={quest.data.rubric_id} />
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          บันทึกภารกิจก่อน แล้วจึงกำหนดเกณฑ์การให้คะแนน (Rubric)
+        </p>
+      )}
     </div>
   );
 }
