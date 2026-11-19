@@ -12,6 +12,7 @@ import { getCourse } from '@/features/courses/api';
 import { cn } from '@/lib/utils';
 import { CourseXpCard } from '@/features/gamification/CourseXpCard';
 import { CourseQuizzes } from '@/features/assessment/components/CourseQuizzes';
+import { ClassroomLink } from '@/features/classroom/ClassroomLink';
 import { LeaderboardCard } from '@/features/gamification/LeaderboardCard';
 import { QuestStageProgress } from '../components/QuestStageProgress';
 import { questStageLabels } from '../resources';
@@ -64,15 +65,18 @@ export default function StudentCoursePage() {
               barClassName="xp-gradient"
             />
           </div>
-          {r.next && (
-            <Link
-              to={`/student/courses/${courseId}/lessons/${r.next.id}`}
-              className={buttonVariants()}
-            >
-              {r.completed ? 'เรียนต่อ' : 'เริ่มเรียน'}: {r.next.title}
-              <ArrowRight aria-hidden />
-            </Link>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {r.next && (
+              <Link
+                to={`/student/courses/${courseId}/lessons/${r.next.id}`}
+                className={buttonVariants()}
+              >
+                {r.completed ? 'เรียนต่อ' : 'เริ่มเรียน'}: {r.next.title}
+                <ArrowRight aria-hidden />
+              </Link>
+            )}
+            <ClassroomLink courseId={courseId} />
+          </div>
         </Card>
         <CourseXpCard courseId={courseId} />
         <Card className="space-y-3 lg:col-span-3">
