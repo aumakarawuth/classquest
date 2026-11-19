@@ -31,6 +31,7 @@ const QuestBoardPage = lazy(() => import('@/features/quests/pages/QuestBoardPage
 const QuestDetailPage = lazy(() => import('@/features/quests/pages/QuestDetailPage'));
 const ReviewQueuePage = lazy(() => import('@/features/quests/pages/ReviewQueuePage'));
 const ReviewDetailPage = lazy(() => import('@/features/quests/pages/ReviewDetailPage'));
+const CourseLevelsPage = lazy(() => import('@/features/gamification/pages/CourseLevelsPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -42,6 +43,7 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/quests', element: <TeacherQuestsPage /> },
     { path: 'courses/:courseId/quests/:questId', element: <QuestEditorPage /> },
     { path: 'reviews/:submissionId', element: <ReviewDetailPage /> },
+    { path: 'courses/:courseId/levels', element: <CourseLevelsPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },

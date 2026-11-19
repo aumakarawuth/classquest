@@ -154,6 +154,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             จัดการภารกิจ
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/levels`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            เลเวลและ XP
+          </Link>
         </Card>
       </div>
     </div>

@@ -15,6 +15,16 @@ vi.mock('./studentApi', async (orig) => ({
   getRoadmapData: vi.fn(),
   completeLesson: vi.fn(),
 }));
+vi.mock('@/features/gamification/api', async (orig) => ({
+  ...(await orig<typeof import('@/features/gamification/api')>()),
+  getMyProgress: vi.fn().mockResolvedValue({
+    xp: 130,
+    level: 2,
+    level_title: 'Explorer',
+    level_floor: 100,
+    next_threshold: 250,
+  }),
+}));
 vi.mock('./api', async (orig) => ({
   ...(await orig<typeof import('./api')>()),
   getLesson: vi.fn(),
@@ -109,6 +119,10 @@ it('roadmap shows progress, next lesson and locked lessons', async () => {
   expect(await screen.findByRole('link', { name: /เริ่มเรียน: IoT คืออะไร/ })).toBeInTheDocument();
   expect(screen.getByText(/ล็อกอยู่ — เรียน “IoT คืออะไร” ก่อน/)).toBeInTheDocument();
   expect(screen.queryByRole('link', { name: /Hello Arduino/ })).not.toBeInTheDocument();
+  expect(await screen.findByRole('progressbar', { name: 'ความคืบหน้าสู่เลเวล 3' })).toHaveAttribute(
+    'aria-valuenow',
+    '30',
+  );
   expect((await axe(container)).violations).toEqual([]);
 });
 

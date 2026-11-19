@@ -1,5 +1,7 @@
 import { Swords } from 'lucide-react';
 import { EmptyState } from '@/components/common/EmptyState';
+import { Link } from 'react-router-dom';
+import { buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 /**
@@ -22,9 +24,17 @@ export default function StudentDashboard() {
             description="เมื่อเข้าร่วมรายวิชาแล้ว ภารกิจจะปรากฏที่นี่"
           />
         </Card>
-        <Card className="md:col-span-2">
-          <h2 className="mb-2 font-semibold">ระดับและ XP</h2>
-          <p className="text-sm text-muted-foreground">จะแสดงเมื่อระบบ XP เปิดใช้งาน (Phase 3)</p>
+        <Card className="space-y-3 md:col-span-2">
+          <h2 className="font-semibold">ระดับและ XP</h2>
+          <p className="text-sm text-muted-foreground">
+            XP และเลเวลแยกตามรายวิชา ดูได้ในหน้ารายวิชาแต่ละวิชา
+          </p>
+          <Link
+            to="/student/courses"
+            className={buttonVariants({ variant: 'outline', size: 'sm' })}
+          >
+            ไปที่รายวิชาของฉัน
+          </Link>
         </Card>
       </div>
     </div>

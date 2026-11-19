@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { getCourse } from '@/features/courses/api';
 import { cn } from '@/lib/utils';
+import { CourseXpCard } from '@/features/gamification/CourseXpCard';
 import { QuestStageProgress } from '../components/QuestStageProgress';
 import { questStageLabels } from '../resources';
 import type { RoadmapLesson } from '../roadmap';
@@ -71,7 +72,8 @@ export default function StudentCoursePage() {
             </Link>
           )}
         </Card>
-        <Card className="space-y-3">
+        <CourseXpCard courseId={courseId} />
+        <Card className="space-y-3 lg:col-span-3">
           <h2 className="font-semibold">เส้นทาง QUEST</h2>
           <QuestStageProgress stages={r.stages} />
         </Card>
