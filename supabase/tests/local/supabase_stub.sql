@@ -22,3 +22,4 @@ alter default privileges in schema public grant all on tables to anon, authentic
 create schema extensions;
 alter database postgres set search_path = "$user", public, extensions; -- mirrors Supabase default
 grant usage on schema extensions to anon, authenticated;
+create extension if not exists pgcrypto with schema extensions;

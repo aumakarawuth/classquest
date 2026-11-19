@@ -22,13 +22,13 @@
 | P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | claude | in-progress (claude) | migration ผ่าน `supabase/tests/local/run.sh`; สร้าง cloud project รอ slot ว่าง (free org มี 2 active projects แล้ว) |
 | P1-06 | Google sign-in (Workspace Internal, ADR-0006) + domain restriction + pending approval + role guard routes | claude | done (ทดสอบกับ Google จริงรอ Supabase project + OAuth client) | อีเมลนอกโดเมนถูกปฏิเสธฝั่ง DB; ผู้ใช้ใหม่ status=pending เข้า dashboard ไม่ได้จนอนุมัติ |
 | P1-07 | RLS helpers + policies + pgTAP tests | claude | done | student เปลี่ยน role/อ่านวิชาอื่น ไม่ได้ (test) |
-| P1-08 | Admin: approve users, roles, audit log list | claude | review | ทุกการเปลี่ยน role มี audit row |
+| P1-08 | Admin: approve users, roles, audit log list | claude | done | ทุกการเปลี่ยน role มี audit row |
 
 ## Phase 2 Core Learning
 | ID | Task | Owner | AC |
 |---|---|---|---|
-| P2-01 | Migration learning (units, lessons, resources, progress) | codex | default 18 units เมื่อสร้างวิชา |
-| P2-02 | Course management + clone + enrollment code | codex/claude | clone ไม่คัดลอกข้อมูลนักเรียน; code หมดอายุใช้ไม่ได้ |
+| P2-01 | Migration learning (units, lessons, resources, progress) — **review (claude)** | claude | default 18 units เมื่อสร้างวิชา |
+| P2-02 | Course management + clone + enrollment code — **review (claude)** | claude | clone ไม่คัดลอกข้อมูลนักเรียน; code หมดอายุใช้ไม่ได้ |
 | P2-03 | Course Builder + Lesson Editor (markdown + resources) | claude | เพิ่ม resource ครบ 11 ประเภท, preview ปลอดภัย (sanitize) |
 | P2-04 | Student Roadmap (QUEST stepper) + Lesson Viewer + unlock | claude | บทเรียนที่ยังล็อกแสดงเงื่อนไข |
 | P2-05 | Quest migration + `submit_quest` RPC + storage bucket | codex | ไฟล์ > 2MB/MIME อื่นถูกปฏิเสธ; เกิน resubmission ถูกปฏิเสธ |
