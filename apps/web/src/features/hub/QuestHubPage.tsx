@@ -81,9 +81,9 @@ export default function QuestHubPage() {
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">
-            สวัสดี {account?.displayName ?? ''} 👋
+            {account?.displayName ? `ไปต่อกัน ${account.displayName}` : 'ไปต่อกัน'}
           </h1>
-          <p className="text-sm text-muted-foreground">เลือกด่านถัดไปแล้วลุยกันเลย</p>
+          <p className="text-sm text-muted-foreground">ด่านสีเหลืองคือด่านถัดไปของคุณ</p>
         </div>
         {courses.data.length > 1 && (
           <label className="text-sm">
@@ -209,7 +209,7 @@ function CourseHub({ courseId }: { courseId: string }) {
           {sections.length ? (
             <QuestMap sections={sections} />
           ) : (
-            <EmptyState icon={Swords} title="ยังไม่มีด่าน" description="ครูยังไม่ได้เผยแพร่บทเรียนหรือภารกิจ" />
+            <EmptyState icon={Swords} title="ยังไม่มีด่าน" description="ครูยังไม่ปล่อยด่านแรก รอแป๊บนะ" />
           )}
         </Card>
         <aside className="space-y-4">
@@ -251,7 +251,7 @@ function CourseHub({ courseId }: { courseId: string }) {
                 })}
               </ul>
             ) : (
-              <p className="text-sm text-muted-foreground">ไม่มีงานที่ใกล้ครบกำหนด</p>
+              <p className="text-sm text-muted-foreground">ยังไม่มีงานไหนจ่อเส้นตาย</p>
             )}
           </Card>
           <Card className="space-y-3">
@@ -273,7 +273,7 @@ function CourseHub({ courseId }: { courseId: string }) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-muted-foreground">ทำภารกิจที่เปิดอยู่ครบแล้ว 🎉</p>
+              <p className="text-sm text-muted-foreground">เคลียร์ภารกิจที่เปิดอยู่หมดแล้ว รอครูปล่อยด่านใหม่</p>
             )}
           </Card>
         </aside>

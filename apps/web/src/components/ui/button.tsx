@@ -5,11 +5,12 @@ import { cn } from '@/lib/utils';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const buttonVariants = cva(
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        default: 'btn-3d bg-primary text-primary-foreground hover:bg-primary/90',
+        game: 'btn-3d bg-highlight text-highlight-foreground [--btn-edge:var(--highlight-shade)] hover:brightness-105',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
         outline: 'border bg-card hover:bg-muted',
         ghost: 'hover:bg-muted',

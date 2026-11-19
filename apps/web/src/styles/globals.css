@@ -4,45 +4,53 @@
 
 /* Design tokens — see DESIGN_SYSTEM.md. Colours chosen for WCAG AA on their paired background. */
 :root {
-  --background: #f8fafc; /* slate-50 */
-  --foreground: #0f172a; /* slate-900 */
+  --background: #f0f9ff; /* sky-50 */
+  --foreground: #0c1f33;
   --card: #ffffff;
-  --card-foreground: #0f172a;
-  --muted: #f1f5f9; /* slate-100 */
-  --muted-foreground: #475569; /* slate-600 */
-  --border: #e2e8f0; /* slate-200 */
-  --ring: #4f46e5;
-  --primary: #4f46e5; /* indigo-600 */
+  --card-foreground: #0c1f33;
+  --muted: #e0f2fe; /* sky-100 */
+  --muted-foreground: #3f5b73;
+  --border: #bae6fd; /* sky-200 */
+  --ring: #0369a1;
+  --primary: #0369a1; /* sky-700, 5.9:1 on white */
   --primary-foreground: #ffffff;
-  --accent: #7c3aed; /* violet-600 */
+  --primary-shade: #075985; /* 3D button edge */
+  --accent: #a16207; /* gold text, AA on white */
   --accent-foreground: #ffffff;
-  --secondary: #0e7490; /* cyan-700 (AA on white) */
+  --highlight: #facc15; /* yellow-400 fill */
+  --highlight-foreground: #422006;
+  --highlight-shade: #ca8a04;
+  --secondary: #0e7490;
   --secondary-foreground: #ffffff;
-  --success: #047857; /* emerald-700 */
+  --success: #047857;
   --success-foreground: #ffffff;
-  --warning: #f59e0b; /* amber-500 */
-  --warning-foreground: #451a03; /* amber-950 */
+  --warning: #f59e0b;
+  --warning-foreground: #451a03;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --radius: 0.75rem;
+  --radius: 1rem;
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --background: #020617; /* slate-950 */
-  --foreground: #f1f5f9;
-  --card: #0f172a;
-  --card-foreground: #f1f5f9;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8; /* slate-400 */
-  --border: #1e293b;
-  --ring: #818cf8;
-  --primary: #818cf8; /* indigo-400 */
-  --primary-foreground: #020617;
-  --accent: #a78bfa;
-  --accent-foreground: #020617;
+  --background: #04131f;
+  --foreground: #e6f4ff;
+  --card: #0b2234;
+  --card-foreground: #e6f4ff;
+  --muted: #12324a;
+  --muted-foreground: #9cc3e0;
+  --border: #1d4060;
+  --ring: #38bdf8;
+  --primary: #38bdf8; /* sky-400 */
+  --primary-foreground: #082f49;
+  --primary-shade: #0284c7;
+  --accent: #fde047;
+  --accent-foreground: #422006;
+  --highlight: #facc15;
+  --highlight-foreground: #422006;
+  --highlight-shade: #a16207;
   --secondary: #22d3ee;
-  --secondary-foreground: #020617;
+  --secondary-foreground: #082f49;
   --success: #34d399;
   --success-foreground: #022c22;
   --warning: #fbbf24;
@@ -65,6 +73,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-success: var(--success);
@@ -74,7 +84,8 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --radius-lg: var(--radius);
-  --font-sans: 'Inter', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Anuphan', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Mitr', 'Anuphan', ui-sans-serif, sans-serif;
 }
 
 @layer base {
@@ -84,6 +95,13 @@
   html {
     font-family: var(--font-sans);
     line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0;
   }
   body {
     background: var(--color-background);
@@ -106,7 +124,7 @@
 }
 
 .xp-gradient {
-  background-image: linear-gradient(90deg, #6366f1, #8b5cf6, #22d3ee);
+  background-image: linear-gradient(90deg, #0284c7, #0ea5e9 60%, #38bdf8);
 }
 
 /* Reward celebration (decorative; hidden under prefers-reduced-motion) */
@@ -129,4 +147,16 @@
   .cq-pop {
     animation: cq-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
+}
+
+/* Game-style chunky press: solid bottom edge instead of soft shadows */
+.btn-3d {
+  box-shadow: 0 4px 0 0 var(--btn-edge, var(--primary-shade));
+  transition:
+    transform 80ms,
+    box-shadow 80ms;
+}
+.btn-3d:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 var(--btn-edge, var(--primary-shade));
 }

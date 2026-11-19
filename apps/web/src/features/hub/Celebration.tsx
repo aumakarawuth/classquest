@@ -68,7 +68,7 @@ export function Celebration({ diff, onClose }: { diff: RewardDiff | null; onClos
               </ul>
             </AlertDialog.Description>
             <AlertDialog.Action asChild>
-              <Button className="w-full" onClick={onClose}>
+              <Button variant="game" className="w-full" onClick={onClose}>
                 ลุยต่อ
               </Button>
             </AlertDialog.Action>
