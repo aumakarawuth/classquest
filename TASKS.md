@@ -9,6 +9,7 @@
 | P0-01 | Requirements, architecture, docs ชุดแรก | claude | review | เอกสารครบตาม §15, รอผู้อนุมัติ |
 | P0-02 | อนุมัติ Architecture & MVP scope (อนุมัติแล้ว, repo Public) | human | done | ผู้รับผิดชอบโครงการลงความเห็นใน PR/Issue |
 | P0-03 | ยืนยัน free tier limits จากหน้าทางการ + บันทึกวันที่ | human/codex | todo | ตารางใน FREE_TIER_BUDGET.md มีลิงก์+วันที่ตรวจ |
+| P0-05 | ยืนยันการใช้ Google Workspace for Education → ADR-0006 | claude | review | ADR + DEPLOYMENT/TASKS อัปเดต |
 | P0-04 | ตรวจเกณฑ์การประกวดทั้ง 2 ประเภท map กับ Evidence Center | human/claude | todo | ตาราง mapping เกณฑ์ ↔ ฟีเจอร์ |
 
 ## Phase 1 Foundation
@@ -19,7 +20,7 @@
 | P1-03 | Design tokens + Tailwind + shadcn + light/dark + fonts | claude | todo | toggle theme, contrast AA ตรวจด้วย axe |
 | P1-04 | App shell: layouts 3 role, sidebar/bottom nav, states components | claude | todo | responsive 360/768/1280px, keyboard nav |
 | P1-05 | Supabase project + config + migration `0001_core` (profiles, roles, courses, members, settings) | codex | todo | `supabase db reset` ผ่าน |
-| P1-06 | Google sign-in + pending approval + role guard routes | codex | todo | ผู้ใช้ใหม่ status=pending, เข้า dashboard ไม่ได้จนอนุมัติ |
+| P1-06 | Google sign-in (Workspace Internal, ADR-0006) + domain restriction + pending approval + role guard routes | codex | todo | อีเมลนอกโดเมนถูกปฏิเสธฝั่ง DB; ผู้ใช้ใหม่ status=pending เข้า dashboard ไม่ได้จนอนุมัติ |
 | P1-07 | RLS helpers + policies + pgTAP tests | codex | todo | student เปลี่ยน role/อ่านวิชาอื่น ไม่ได้ (test) |
 | P1-08 | Admin: approve users, roles, audit log list | claude(UI)+codex(RPC) | todo | ทุกการเปลี่ยน role มี audit row |
 
