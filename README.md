@@ -2,7 +2,14 @@
 
 แพลตฟอร์มการเรียนรู้แบบเกมและติดตามสมรรถนะ สำหรับ ปวช./ปวส. ทำงานคู่กับ Google Classroom ตามรูปแบบการเรียนรู้ **QUEST** รายวิชานำร่อง 31910-2012 Internet of Things
 
-> สถานะ: **Phase 0 – Planning** (ยังไม่มี source code — รออนุมัติ Architecture และ MVP Scope)
+> สถานะ: **Phase 1 – Foundation**
+
+## เริ่มพัฒนา
+```bash
+npm install
+npm run dev
+```
+ตรวจสอบก่อน commit: `npm run lint && npm run typecheck && npm test && npm run build` · E2E: `npm run test:e2e`
 
 Stack: React · TypeScript · Vite · Tailwind · shadcn/ui · TanStack Query · Supabase (Postgres/RLS/Auth) · Cloudflare Pages — งบประมาณ 0 บาท/เดือน
 
