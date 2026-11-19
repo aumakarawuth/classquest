@@ -174,6 +174,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             สมรรถนะ
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/quizzes`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            แบบทดสอบ
+          </Link>
         </Card>
       </div>
     </div>

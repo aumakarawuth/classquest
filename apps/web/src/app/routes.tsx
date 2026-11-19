@@ -42,6 +42,10 @@ const TeacherCompetencyIndexPage = lazy(
   () => import('@/features/competency/pages/TeacherCompetencyIndexPage'),
 );
 
+const QuizListPage = lazy(() => import('@/features/assessment/pages/QuizListPage'));
+const QuizEditorPage = lazy(() => import('@/features/assessment/pages/QuizEditorPage'));
+const QuestionBankPage = lazy(() => import('@/features/assessment/pages/QuestionBankPage'));
+
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
@@ -57,6 +61,9 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'courses/:courseId/competencies', element: <CompetencyManagePage /> },
     { path: 'courses/:courseId/competency-matrix', element: <CompetencyMatrixPage /> },
     { path: 'courses/:courseId/competency/:userId', element: <StudentReportPage /> },
+    { path: 'courses/:courseId/quizzes', element: <QuizListPage /> },
+    { path: 'courses/:courseId/quizzes/:quizId', element: <QuizEditorPage /> },
+    { path: 'courses/:courseId/question-bank', element: <QuestionBankPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
