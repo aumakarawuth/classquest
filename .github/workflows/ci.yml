@@ -31,3 +31,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt-get update -q && sudo apt-get install -y -q postgresql-16 postgresql-16-pgtap
       - run: PG_BIN=/usr/lib/postgresql/16/bin supabase/tests/local/run.sh
+      - run: PG_BIN=/usr/lib/postgresql/16/bin supabase/tests/local/run.sh --seed

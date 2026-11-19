@@ -13,6 +13,12 @@ trap '"$bin/pg_ctl" -D "$data" stop -m immediate >/dev/null 2>&1 || true; rm -rf
 psql=(psql -h "$data" -p "$port" -U postgres -d postgres -v ON_ERROR_STOP=1 -q)
 "${psql[@]}" -f "$here/supabase_stub.sql"
 for f in "$root"/migrations/*.sql; do "${psql[@]}" -f "$f"; done
+if [ "${1:-}" = "--seed" ]; then
+  # Fresh DB with seed only (tests use their own fixtures and must not see seed rows).
+  "${psql[@]}" -f "$root/seed.sql"
+  "${psql[@]}" -t -A -f "$here/seed_check.sql"
+  exit 0
+fi
 status=0
 for t in "$root"/tests/database/*.test.sql; do
   echo "# $(basename "$t")"

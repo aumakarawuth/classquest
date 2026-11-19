@@ -90,7 +90,7 @@ erDiagram
 ## Migrations & Seed
 - ทดสอบ migration แบบไม่ใช้ Docker: `supabase/tests/local/run.sh` (สร้าง Postgres ชั่วคราว + stub `auth` schema แล้วรัน `*_test.sql`) — pgTAP เต็มรูปแบบอยู่ใน P1-07
 - `supabase/migrations/*` ผ่าน Supabase CLI; ห้ามแก้ migration ที่ merge แล้ว
-- `supabase/seed.sql` = DEV ONLY: รายวิชา 31910-2012, 18 สัปดาห์, Mission 01–09 + Boss, 30 นักเรียนชื่อสมมติ `student01@example.test` (โดเมน .test ห้าม deploy) — CI ตรวจว่า production ไม่รัน seed
+- `supabase/seed.sql` = DEV ONLY (ตรวจด้วย `supabase/tests/local/run.sh --seed`; หยุดทำงานถ้าพบบัญชีที่ไม่ใช่ @example.test): รายวิชา 31910-2012, 18 สัปดาห์, Mission 01–09 + Boss, 30 นักเรียนชื่อสมมติ `student01@example.test` (โดเมน .test ห้าม deploy) — CI ตรวจว่า production ไม่รัน seed
 
 ## Retention (PDPA)
 learning_events 1 ปี; ai_usage 90 วัน (aggregate); ลบบัญชีตามคำขอ → anonymize profiles, คง aggregated evidence
