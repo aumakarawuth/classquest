@@ -21,12 +21,16 @@ const TeacherCourseDetailPage = lazy(
   () => import('@/features/courses/pages/TeacherCourseDetailPage'),
 );
 const StudentCoursesPage = lazy(() => import('@/features/courses/pages/StudentCoursesPage'));
+const CourseBuilderPage = lazy(() => import('@/features/learning/pages/CourseBuilderPage'));
+const LessonEditorPage = lazy(() => import('@/features/learning/pages/LessonEditorPage'));
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
   teacher: [
     { path: 'courses/new', element: <CourseFormPage /> },
     { path: 'courses/:courseId', element: <TeacherCourseDetailPage /> },
+    { path: 'courses/:courseId/builder', element: <CourseBuilderPage /> },
+    { path: 'courses/:courseId/lessons/:lessonId', element: <LessonEditorPage /> },
   ],
   student: [
     {
