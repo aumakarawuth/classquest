@@ -67,7 +67,7 @@ export default function QuestEditorPage() {
       {back}
       <QuestForm courseId={courseId} quest={isNew ? null : (quest.data ?? null)} />
       {!isNew && quest.data ? (
-        <RubricEditor questId={quest.data.id} rubricId={quest.data.rubric_id} />
+        <RubricEditor questId={quest.data.id} rubricId={quest.data.rubric_id} courseId={courseId} />
       ) : (
         <p className="text-sm text-muted-foreground">
           บันทึกภารกิจก่อน แล้วจึงกำหนดเกณฑ์การให้คะแนน (Rubric)

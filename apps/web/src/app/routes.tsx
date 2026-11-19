@@ -34,6 +34,13 @@ const ReviewDetailPage = lazy(() => import('@/features/quests/pages/ReviewDetail
 const CourseLevelsPage = lazy(() => import('@/features/gamification/pages/CourseLevelsPage'));
 const CourseBadgesPage = lazy(() => import('@/features/gamification/pages/CourseBadgesPage'));
 const AchievementsPage = lazy(() => import('@/features/gamification/pages/AchievementsPage'));
+const CompetencyManagePage = lazy(() => import('@/features/competency/pages/CompetencyManagePage'));
+const CompetencyMatrixPage = lazy(() => import('@/features/competency/pages/CompetencyMatrixPage'));
+const StudentReportPage = lazy(() => import('@/features/competency/pages/StudentReportPage'));
+const MyCompetencyPage = lazy(() => import('@/features/competency/pages/MyCompetencyPage'));
+const TeacherCompetencyIndexPage = lazy(
+  () => import('@/features/competency/pages/TeacherCompetencyIndexPage'),
+);
 
 /** Detail routes that are not menu items. */
 const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
@@ -47,6 +54,9 @@ const extraRoutes: Partial<Record<ShellArea, RouteObject[]>> = {
     { path: 'reviews/:submissionId', element: <ReviewDetailPage /> },
     { path: 'courses/:courseId/levels', element: <CourseLevelsPage /> },
     { path: 'courses/:courseId/badges', element: <CourseBadgesPage /> },
+    { path: 'courses/:courseId/competencies', element: <CompetencyManagePage /> },
+    { path: 'courses/:courseId/competency-matrix', element: <CompetencyMatrixPage /> },
+    { path: 'courses/:courseId/competency/:userId', element: <StudentReportPage /> },
   ],
   student: [
     { path: 'courses/:courseId', element: <StudentCoursePage /> },
@@ -62,8 +72,13 @@ const implemented: Partial<Record<ShellArea, Record<string, ReactElement>>> = {
     courses: <StudentCoursesPage />,
     quests: <QuestBoardPage />,
     achievements: <AchievementsPage />,
+    competency: <MyCompetencyPage />,
   },
-  teacher: { courses: <TeacherCoursesPage />, reviews: <ReviewQueuePage /> },
+  teacher: {
+    courses: <TeacherCoursesPage />,
+    reviews: <ReviewQueuePage />,
+    competency: <TeacherCompetencyIndexPage />,
+  },
   admin: { users: <UsersPage />, roles: <RolesPage />, audit: <AuditLogPage /> },
 };
 

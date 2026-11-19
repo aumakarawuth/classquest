@@ -168,6 +168,12 @@ function CourseDetail({ course }: { course: Course }) {
           >
             Badge
           </Link>
+          <Link
+            to={`/teacher/courses/${course.id}/competencies`}
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            สมรรถนะ
+          </Link>
         </Card>
       </div>
     </div>

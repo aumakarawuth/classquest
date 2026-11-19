@@ -12,13 +12,14 @@ const criterionSchema = z.object({
   name: z.string(),
   description: z.string(),
   max_points: z.coerce.number(),
+  competency_id: z.string().nullable(),
 });
 export type RubricCriterion = z.infer<typeof criterionSchema>;
 
 export async function getRubricCriteria(rubricId: string): Promise<RubricCriterion[]> {
   const { data, error } = await client()
     .from('rubric_criteria')
-    .select('id, position, name, description, max_points')
+    .select('id, position, name, description, max_points, competency_id')
     .eq('rubric_id', rubricId)
     .order('position');
   if (error) throw error;
@@ -29,6 +30,7 @@ export interface CriterionInput {
   name: string;
   description: string;
   max_points: number;
+  competency_id: string | null;
 }
 export async function saveQuestRubric(questId: string, criteria: CriterionInput[]) {
   const { error } = await client().rpc('save_quest_rubric', {

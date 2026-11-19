@@ -37,6 +37,8 @@
 | P2-08 | Seed dev: IoT course + 10 missions + 30 fake students — **done** | claude | seed ใช้เฉพาะ local/dev |
 
 ### Follow-ups
+- `clone_course` ยังไม่คัดลอก competencies/mappings (และ rubric criteria ที่คัดลอกจะไม่ผูกสมรรถนะ)
+- บันทึก quest mapping ของสมรรถนะเป็น delete+insert (ไม่ atomic)
 - การบันทึก prerequisite ของ quest เป็น delete+insert 2 คำขอ (ไม่ atomic) — ย้ายเป็น RPC ถ้าพบปัญหา
 - ทดสอบขนาดไฟล์ 2 MB / MIME กับ Storage API จริง (บังคับโดย bucket config — ทดสอบไม่ได้ใน local stub)
 
@@ -46,11 +48,11 @@
 | P3-01 — **done** | (ledger + award จาก quest เสร็จใน P2-07) levels editable + level calc view | XP = SUM(ledger), unique constraint ทดสอบ race 30 concurrent |
 | P3-02 — **done** | Badges + rules + Achievements page | award idempotent |
 | P3-03 | Skill tree (competency parent) + streak weekly | ไม่หัก XP เมื่อขาด |
-| P3-04 — **review (claude)** | Leaderboard toggle + opt-out | ไม่มี email/คะแนนสอบใน response |
+| P3-04 — **done** | Leaderboard toggle + opt-out | ไม่มี email/คะแนนสอบใน response |
 | P4-01 | Quiz builder + question bank + random | |
 | P4-02 | Attempt RPC + auto-grade + manual short answer | `is_correct` ไม่ปรากฏใน network ของ student (Playwright) |
 | P4-03 | Pre/Post-test comparison report | คำนวณ gain จากข้อมูลจริง |
-| P4-04 | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
+| P4-04 — **review (claude)** | Competency framework, mapping, matrix, individual report | ครูเห็นผ่าน/ไม่ผ่านรายสมรรถนะ |
 | P5-01 | Classroom links + CSV import roster / export grades | ใช้ได้โดยไม่มี Google API |
 | P5-02 | Virtual Lab (Wokwi link/embed flag) | embed ปิดแล้วยังใช้ลิงก์ได้ |
 | P6-01 | Teacher dashboard + filters + students requiring support | query ≤ 3 requests ต่อหน้า |
